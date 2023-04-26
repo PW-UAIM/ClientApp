@@ -25,7 +25,7 @@ IModel Model { get; }
 
 ApplicationState CurrentState { get; }
 
-ICommand SearchNodesCommand { get; }
+ICommand SearchCarCommands { get; }
 
 ICommand ShowListCommand { get; }
 

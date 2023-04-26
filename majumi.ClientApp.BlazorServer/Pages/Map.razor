@@ -4,17 +4,11 @@
 
 <h5>Text to search:</h5>
 
-<RadzenTextBox Name="searchText" @bind-Value=@model.SearchText Style="width: 160px" />
 
 <RadzenButton Icon="search" Text="Search" Click=@controller.SearchNodesAsync Style="width: 160px" />
 
 <h5 style="margin-top: 16px">Nodes</h5>
 
-<RadzenListBox Name="nodeList" Data=@model.NodeList TValue="NodeData" SelectedItem=@model.SelectedNode Style="width: 324px; height: 240px">
-  <Template Context="nodeData">
-    @nodeData.Id at (@nodeData.Position.X,@nodeData.Position.Y)
-  </Template>
-</RadzenListBox>
 
 <RadzenMenu>
   <RadzenMenuItem Text="Add" Icon="add" />

@@ -13,14 +13,15 @@
 
 namespace majumi.ClientApp.Model;
 
+using majumi.CarService.ClientsAppService.Rest.Model.Model;
 using System.Collections.Generic;
 using System.ComponentModel;
 
 public interface IData : INotifyPropertyChanged
 {
-string SearchText { get; set; }
+int ClientID { get; set; }
 
-List<NodeData> NodeList { get; }
+List<CarData> CarList { get; }
 
-NodeData SelectedNode { get; set; }
+CarData SelectedCar{ get; set; }
 }

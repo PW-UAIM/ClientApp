@@ -11,12 +11,19 @@
 //
 //===============================================================================
 
+using majumi.CarService.ClientsAppService.Rest.Model.Model;
+using System.Collections.Generic;
+
 namespace majumi.ClientApp.Model;
 
-public static class NetworkClientFactory
+public interface IClient
 {
-public static INetwork GetNetworkClient( )
-{
-  return new FakeNetworkClient( );
-}
+    bool AddCar(CarData car);
+    bool AddVisit(VisitData visit);
+    ClientLoginStatus ClientLogIn(int clientID);
+    List<CarData> GetClientCars(int clientID);
+    List<VisitData> GetClientVisits(int clientID);
+    CarData GetCar(int clientID);
+    VisitData GetVisit(int clientID);
+
 }

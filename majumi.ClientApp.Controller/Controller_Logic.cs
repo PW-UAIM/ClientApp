@@ -30,7 +30,7 @@ public ApplicationState CurrentState
 }
 private ApplicationState currentState = ApplicationState.List;
 
-public ICommand SearchNodesCommand { get; private set; }
+public ICommand SearchCarCommands { get; private set; }
 
 public ICommand ShowListCommand { get; private set; }
 
@@ -38,7 +38,7 @@ public ICommand ShowMapCommand { get; private set; }
 
 public async Task SearchNodesAsync( )
 {
-  await Task.Run( ( ) => this.SearchNodes( ) );
+  await Task.Run( ( ) => this.SearchCars( ) );
 }
 
 public async Task ShowListAsync( )
@@ -51,9 +51,9 @@ public async Task ShowMapAsync( )
   await Task.Run( ( ) => this.ShowMap( ) );
 }
 
-private void SearchNodes( )
+private void SearchCars( )
 {
-  this.Model.LoadNodeList( );
+  this.Model.LoadCarList( );
 }
 
 private void ShowList( )

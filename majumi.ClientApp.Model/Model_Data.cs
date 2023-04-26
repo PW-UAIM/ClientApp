@@ -13,43 +13,44 @@
 
 namespace majumi.ClientApp.Model;
 
+using majumi.CarService.ClientsAppService.Rest.Model.Model;
 using System.Collections.Generic;
 
 public partial class Model : IData
 {
-public string SearchText
+public int ClientID  
 {
-  get { return this.searchText; }
+  get { return this.clientID; }
   set
   {
-    this.searchText = value;
+    this.clientID = value;
 
-    this.RaisePropertyChanged( "SearchText" );
+    this.RaisePropertyChanged( "ClientID" );
   }
 }
-private string searchText;
+private int clientID;
 
-public List<NodeData> NodeList
+public List<CarData> CarList
 {
-  get { return this.nodeList; }
+  get { return this.carList; }
   private set
   {
-    this.nodeList = value;
+    this.carList = value;
 
-    this.RaisePropertyChanged( "NodeList" );
+    this.RaisePropertyChanged( "CarList" );
   }
 }
-private List<NodeData> nodeList = new List<NodeData>( );
+private List<CarData> carList = new List<CarData>( );
 
-public NodeData SelectedNode
+public CarData SelectedCar
 {
-  get { return this.selectedNode; }
+  get { return this.selectedCar; }
   set
   {
-    this.selectedNode = value;
+    this.selectedCar = value;
 
-    this.RaisePropertyChanged( "SelectedNode" );
+    this.RaisePropertyChanged( "SelectedCar" );
   }
 }
-private NodeData selectedNode;
+private CarData selectedCar;
 }

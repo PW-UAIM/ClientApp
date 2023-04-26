@@ -24,7 +24,7 @@ public Controller( IEventDispatcher dispatcher, IModel model ) : base( dispatche
 {
   this.Model = model;
 
-  this.SearchNodesCommand = new ControllerCommand( this.SearchNodes );
+  this.SearchCarCommands = new ControllerCommand( this.SearchCars );
 
   this.ShowListCommand = new ControllerCommand( this.ShowList );
 

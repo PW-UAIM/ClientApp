@@ -26,15 +26,15 @@ public void LoadNodeList_ReadsFromNodeArray_ThereIsOneMatchingNode( )
 {
   IModel model = new Model( new EmptyEventDispatcher( ) );
 
-  string searchText = "node2";
+  int clientID = 1;
 
-  model.SearchText = searchText;
+  model.ClientID = clientID;
 
-  model.LoadNodeList( );
+  model.LoadCarList( );
 
   int expectedCount = 1;
 
-  int actualCount = model.NodeList.Count;
+  int actualCount = model.CarList.Count;
 
   Assert.AreEqual( expectedCount, actualCount, "Node count should be {0} and not {1}", expectedCount, actualCount );
 }

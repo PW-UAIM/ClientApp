@@ -13,28 +13,27 @@
 
 namespace majumi.ClientApp.Model;
 
+using majumi.CarService.ClientsAppService.Rest.Model.Model;
 using System;
 using System.Linq;
 
 public partial class Model : IOperations
 {
-public void LoadNodeList( )
+public void LoadCarList( )
 {
-  this.LoadNodesTask( );
+  this.LoadCarTask( );
   /* AT
   Task.Run( ( ) => this.LoadNodesTask( ) );
   */
 }
 
-private void LoadNodesTask( )
+private void LoadCarTask( )
 {
-  INetwork networkClient = NetworkClientFactory.GetNetworkClient( );
+  IClient clientClient = ClientClientFactory.GetClientClient( );
 
   try
   {
-    NodeData[ ] nodes = networkClient.GetNodes( this.SearchText );
-
-    this.NodeList = nodes.ToList( );
+    this.CarList = clientClient.GetClientCars(this.ClientID);
   }
   catch( Exception e )
   {

@@ -13,8 +13,10 @@
 
 namespace majumi.ClientApp.Model;
 
-public struct PointData
+public static class ClientClientFactory
 {
-public double X { get; set; }
-public double Y { get; set; }
+public static IClient GetClientClient( )
+{
+  return new FakeClientClient( );
+}
 }
