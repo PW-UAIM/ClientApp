@@ -1,0 +1,21 @@
+﻿//===============================================================================
+//
+// PlaZa System Platform
+//
+//===============================================================================
+//
+// Warsaw University of Technology
+// Computer Networks and Services Division
+// Copyright © 2020 PlaZa Creators
+// All rights reserved.
+//
+//===============================================================================
+
+namespace majumi.ClientApp.Model;
+
+public class NodeData
+{
+public string Id { get; set; }
+
+public PointData Position { get; set; }
+}

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\majumi.ClientApp.Model\majumi.ClientApp.Model.csproj" />
+    <ProjectReference Include="..\majumi.ClientApp.Utilities\majumi.ClientApp.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

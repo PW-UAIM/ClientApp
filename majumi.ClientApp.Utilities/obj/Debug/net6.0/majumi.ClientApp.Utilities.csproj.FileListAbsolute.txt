@@ -1,0 +1,12 @@
+C:\Users\1miki\Desktop\gunwochuajim\chujaim_pro-main\Application\clientapp\majumi.ClientApp.Utilities\bin\Debug\net6.0\majumi.ClientApp.Utilities.deps.json
+C:\Users\1miki\Desktop\gunwochuajim\chujaim_pro-main\Application\clientapp\majumi.ClientApp.Utilities\bin\Debug\net6.0\majumi.ClientApp.Utilities.dll
+C:\Users\1miki\Desktop\gunwochuajim\chujaim_pro-main\Application\clientapp\majumi.ClientApp.Utilities\bin\Debug\net6.0\majumi.ClientApp.Utilities.pdb
+C:\Users\1miki\Desktop\gunwochuajim\chujaim_pro-main\Application\clientapp\majumi.ClientApp.Utilities\obj\Debug\net6.0\majumi.ClientApp.Utilities.csproj.AssemblyReference.cache
+C:\Users\1miki\Desktop\gunwochuajim\chujaim_pro-main\Application\clientapp\majumi.ClientApp.Utilities\obj\Debug\net6.0\majumi.ClientApp.Utilities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\1miki\Desktop\gunwochuajim\chujaim_pro-main\Application\clientapp\majumi.ClientApp.Utilities\obj\Debug\net6.0\majumi.ClientApp.Utilities.AssemblyInfoInputs.cache
+C:\Users\1miki\Desktop\gunwochuajim\chujaim_pro-main\Application\clientapp\majumi.ClientApp.Utilities\obj\Debug\net6.0\majumi.ClientApp.Utilities.AssemblyInfo.cs
+C:\Users\1miki\Desktop\gunwochuajim\chujaim_pro-main\Application\clientapp\majumi.ClientApp.Utilities\obj\Debug\net6.0\majumi.ClientApp.Utilities.csproj.CoreCompileInputs.cache
+C:\Users\1miki\Desktop\gunwochuajim\chujaim_pro-main\Application\clientapp\majumi.ClientApp.Utilities\obj\Debug\net6.0\majumi.ClientApp.Utilities.dll
+C:\Users\1miki\Desktop\gunwochuajim\chujaim_pro-main\Application\clientapp\majumi.ClientApp.Utilities\obj\Debug\net6.0\refint\majumi.ClientApp.Utilities.dll
+C:\Users\1miki\Desktop\gunwochuajim\chujaim_pro-main\Application\clientapp\majumi.ClientApp.Utilities\obj\Debug\net6.0\majumi.ClientApp.Utilities.pdb
+C:\Users\1miki\Desktop\gunwochuajim\chujaim_pro-main\Application\clientapp\majumi.ClientApp.Utilities\obj\Debug\net6.0\ref\majumi.ClientApp.Utilities.dll

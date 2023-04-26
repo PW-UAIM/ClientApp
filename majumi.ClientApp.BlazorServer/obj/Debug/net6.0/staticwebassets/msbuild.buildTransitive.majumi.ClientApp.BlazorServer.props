@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\majumi.ClientApp.BlazorServer.props" />
+</Project>
