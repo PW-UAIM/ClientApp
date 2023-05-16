@@ -21,21 +21,15 @@ using majumi.ClientApp.Utilities;
 [TestClass]
 public class ModelTests
 {
-[TestMethod]
-public void LoadNodeList_ReadsFromNodeArray_ThereIsOneMatchingNode( )
-{
-  IModel model = new Model( new EmptyEventDispatcher( ) );
-
-  int clientID = 1;
-
-  model.ClientID = clientID;
-
-  model.LoadCarList( );
-
-  int expectedCount = 1;
-
-  int actualCount = model.CarList.Count;
-
-  Assert.AreEqual( expectedCount, actualCount, "Node count should be {0} and not {1}", expectedCount, actualCount );
-}
+    [TestMethod]
+    public void LoadNodeList_ReadsFromNodeArray_ThereIsOneMatchingNode( )
+    {
+        IModel model = new Model( new EmptyEventDispatcher( ) );
+        int clientID = 1;
+        model.ClientID = clientID;
+        model.LoadCarList( );
+        int expectedCount = 1;
+        int actualCount = model.CarList.Count;
+        Assert.AreEqual( expectedCount, actualCount, "Node count should be {0} and not {1}", expectedCount, actualCount );
+    }
 }

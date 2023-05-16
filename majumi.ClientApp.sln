@@ -13,7 +13,28 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "majumi.ClientApp.Utilities"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "majumi.ClientApp.BlazorServer", "majumi.ClientApp.BlazorServer\majumi.ClientApp.BlazorServer.csproj", "{5ABB86E8-037F-41BE-86AF-D29CAF6DD617}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC9F7141-2115-4164-86D6-DE2559CA5D9A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementy rozwiązania", "Elementy rozwiązania", "{7CDA4A49-E992-4B6C-893A-4FF3F8065946}"
+	ProjectSection(SolutionItems) = preProject
+		.gitlab-ci.yml = .gitlab-ci.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{50F73811-DDA8-486F-85F3-2775A641D671}"
+	ProjectSection(SolutionItems) = preProject
+		Docker\BuildPushImage.bat = Docker\BuildPushImage.bat
+		Docker\BuildPushImage_Dev.bat = Docker\BuildPushImage_Dev.bat
+		Docker\BuildPushImage_Linux.bat = Docker\BuildPushImage_Linux.bat
+		Docker\RunImage.bat = Docker\RunImage.bat
+		Docker\RunImage_Dev.bat = Docker\RunImage_Dev.bat
+		Docker\RunImage_Linux.bat = Docker\RunImage_Linux.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DockerCompose", "DockerCompose", "{6F3AD32B-F302-44AD-BECD-F576525AEF4B}"
+	ProjectSection(SolutionItems) = preProject
+		DockerCompose\docker-compose.yaml = DockerCompose\docker-compose.yaml
+		DockerCompose\Docker_ShowSystem.bat = DockerCompose\Docker_ShowSystem.bat
+		DockerCompose\Docker_StartSystem.bat = DockerCompose\Docker_StartSystem.bat
+		DockerCompose\Docker_StopSystem.bat = DockerCompose\Docker_StopSystem.bat
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
