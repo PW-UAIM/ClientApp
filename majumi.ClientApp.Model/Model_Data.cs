@@ -18,39 +18,40 @@ using System.Collections.Generic;
 
 public partial class Model : IData
 {
-public int ClientID  
-{
-  get { return this.clientID; }
-  set
-  {
-    this.clientID = value;
 
-    this.RaisePropertyChanged( "ClientID" );
-  }
-}
-private int clientID;
+    public int ClientID  
+    {
+      get { return this.clientID; }
+      set
+      {
+        this.clientID = value;
 
-public List<CarData> CarList
-{
-  get { return this.carList; }
-  private set
-  {
-    this.carList = value;
+        this.RaisePropertyChanged( "ClientID" );
+      }
+    }
+    private int clientID;
 
-    this.RaisePropertyChanged( "CarList" );
-  }
-}
-private List<CarData> carList = new List<CarData>( );
+    public List<CarData> CarList
+    {
+      get { return this.carList; }
+      private set
+      {
+        this.carList = value;
 
-public CarData SelectedCar
-{
-  get { return this.selectedCar; }
-  set
-  {
-    this.selectedCar = value;
+        this.RaisePropertyChanged( "CarList" );
+      }
+    }
+    private List<CarData> carList = new List<CarData>( );
 
-    this.RaisePropertyChanged( "SelectedCar" );
-  }
-}
-private CarData selectedCar;
+    public CarData SelectedCar
+    {
+      get { return this.selectedCar; }
+      set
+      {
+        this.selectedCar = value;
+
+        this.RaisePropertyChanged( "SelectedCar" );
+      }
+    }
+    private CarData selectedCar;
 }

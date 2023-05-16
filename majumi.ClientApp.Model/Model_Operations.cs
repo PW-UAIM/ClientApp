@@ -22,11 +22,22 @@ public partial class Model : IOperations
 public void LoadCarList( )
 {
   this.LoadCarTask( );
-  /* AT
-  Task.Run( ( ) => this.LoadNodesTask( ) );
-  */
 }
 
+    public void ClientLogIn()
+    {
+        this.ClientLogInTask();
+    }
+    private void ClientLogInTask()
+    {
+        IClient clientClient = ClientClientFactory.GetClientClient();
+        ClientLoginStatus confirmation = clientClient.ClientLogIn(1);
+        if(confirmation.IsSuccesfull)
+        {
+            this.ClientID = confirmation.Client.ClientID;
+        } 
+        // this.LoginConfirmation = confirmation.IsSuccesfull;
+    }
 private void LoadCarTask( )
 {
   IClient clientClient = ClientClientFactory.GetClientClient( );

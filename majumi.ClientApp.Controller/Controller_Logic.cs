@@ -32,53 +32,24 @@ private ApplicationState currentState = ApplicationState.List;
 
 public ICommand SearchCarCommands { get; private set; }
 
-public ICommand ShowListCommand { get; private set; }
-
-public ICommand ShowMapCommand { get; private set; }
-
-public async Task SearchNodesAsync( )
+    public ICommand ClientLogInCommands { get; private set; }
+    public async Task SearchCarsAsync( )
 {
   await Task.Run( ( ) => this.SearchCars( ) );
 }
-
-public async Task ShowListAsync( )
+public async Task ClientLogInAsync()
 {
-  await Task.Run( ( ) => this.ShowList( ) );
+    await Task.Run(() => this.ClientLogIn());
 }
 
-public async Task ShowMapAsync( )
-{
-  await Task.Run( ( ) => this.ShowMap( ) );
-}
-
-private void SearchCars( )
+    private void SearchCars( )
 {
   this.Model.LoadCarList( );
 }
 
-private void ShowList( )
-{
-  switch( this.CurrentState )
-  {
-    case ApplicationState.List:
-      break;
-
-    default:
-      this.CurrentState = ApplicationState.List;
-      break;
-  }
-}
-
-private void ShowMap( )
-{
-  switch( this.CurrentState )
-  {
-    case ApplicationState.Map:
-      break;
-
-    default:
-      this.CurrentState = ApplicationState.Map;
-      break;
-  }
-}
+   
+    private void ClientLogIn()
+    {
+        this.Model.ClientLogIn();
+    }
 }

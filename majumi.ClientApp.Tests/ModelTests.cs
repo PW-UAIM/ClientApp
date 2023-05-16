@@ -30,6 +30,6 @@ public class ModelTests
         model.LoadCarList( );
         int expectedCount = 1;
         int actualCount = model.CarList.Count;
-        Assert.AreEqual( expectedCount, actualCount, "Node count should be {0} and not {1}", expectedCount, actualCount );
+        Assert.AreEqual( expectedCount, actualCount, "Car count should be {0} and not {1}", expectedCount, actualCount );
     }
 }

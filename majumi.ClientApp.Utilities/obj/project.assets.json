@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Juri\\.nuget\\packages\\": {}
+    "C:\\Users\\J00ri\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Juri\\Desktop\\poprawa\\App\\clientapp\\majumi.ClientApp.Utilities\\majumi.ClientApp.Utilities.csproj",
+      "projectUniqueName": "C:\\Users\\J00ri\\Desktop\\UAIM_2023L_Projekt1_Jurczak_Matuszewski_Parobczy\\App\\clientapp\\majumi.ClientApp.Utilities\\majumi.ClientApp.Utilities.csproj",
       "projectName": "majumi.ClientApp.Utilities",
-      "projectPath": "C:\\Users\\Juri\\Desktop\\poprawa\\App\\clientapp\\majumi.ClientApp.Utilities\\majumi.ClientApp.Utilities.csproj",
-      "packagesPath": "C:\\Users\\Juri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Juri\\Desktop\\poprawa\\App\\clientapp\\majumi.ClientApp.Utilities\\obj\\",
+      "projectPath": "C:\\Users\\J00ri\\Desktop\\UAIM_2023L_Projekt1_Jurczak_Matuszewski_Parobczy\\App\\clientapp\\majumi.ClientApp.Utilities\\majumi.ClientApp.Utilities.csproj",
+      "packagesPath": "C:\\Users\\J00ri\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\J00ri\\Desktop\\UAIM_2023L_Projekt1_Jurczak_Matuszewski_Parobczy\\App\\clientapp\\majumi.ClientApp.Utilities\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Juri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\J00ri\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

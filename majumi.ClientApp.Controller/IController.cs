@@ -27,13 +27,7 @@ ApplicationState CurrentState { get; }
 
 ICommand SearchCarCommands { get; }
 
-ICommand ShowListCommand { get; }
-
-ICommand ShowMapCommand { get; }
-
-Task SearchNodesAsync( );
-
-Task ShowListAsync( );
-
-Task ShowMapAsync( );
+ICommand ClientLogInCommands { get; }
+Task SearchCarsAsync( );
+Task ClientLogInAsync();
 }

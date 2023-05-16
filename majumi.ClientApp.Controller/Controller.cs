@@ -15,19 +15,18 @@ namespace majumi.ClientApp.Controller;
 
 using majumi.ClientApp.Utilities;
 using majumi.ClientApp.Model;
+using System.Windows.Input;
+using System.Threading.Tasks;
 
 public partial class Controller : PropertyContainerBase, IController
 {
 public IModel Model { get; private set; }
 
-public Controller( IEventDispatcher dispatcher, IModel model ) : base( dispatcher )
+    public Controller( IEventDispatcher dispatcher, IModel model ) : base( dispatcher )
 {
   this.Model = model;
 
   this.SearchCarCommands = new ControllerCommand( this.SearchCars );
-
-  this.ShowListCommand = new ControllerCommand( this.ShowList );
-
-  this.ShowMapCommand = new ControllerCommand( this.ShowMap );
 }
+
 }
