@@ -18,12 +18,12 @@ namespace majumi.ClientApp.Model;
 
 public interface IClient
 {
-    bool AddCar(CarData car);
-    bool AddVisit(VisitData visit);
-    ClientLoginStatus ClientLogIn(int clientID);
-    List<CarData> GetClientCars(int clientID);
-    List<VisitData> GetClientVisits(int clientID);
-    CarData GetCar(int clientID);
-    VisitData GetVisit(int clientID);
+	bool AddCar(CarData car);
+	bool AddVisit(VisitData visit);
+	ClientLoginStatus ClientLogIn(int clientID);
+	List<CarData> GetClientCars(int clientID);
+	List<VisitData> GetClientVisits(int clientID);
+	CarData GetCar(int clientID);
+	VisitData GetVisit(int clientID);
 
 }

@@ -15,6 +15,6 @@ namespace majumi.ClientApp.Model;
 
 public interface IOperations
 {
-    void LoadCarList( );
-    void ClientLogIn();
+	void LoadCarsList();
+	void ClientLogIn();
 }

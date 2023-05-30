@@ -20,13 +20,13 @@ using System.Threading.Tasks;
 
 public partial class Controller : PropertyContainerBase, IController
 {
-public IModel Model { get; private set; }
+	public IModel Model { get; private set; }
 
-    public Controller( IEventDispatcher dispatcher, IModel model ) : base( dispatcher )
-{
-  this.Model = model;
+	public Controller(IEventDispatcher dispatcher, IModel model) : base(dispatcher)
+	{
+		this.Model = model;
 
-  this.SearchCarCommands = new ControllerCommand( this.SearchCars );
-}
+		this.LoadCarsCommand = new ControllerCommand(this.LoadCars);
+	}
 
 }

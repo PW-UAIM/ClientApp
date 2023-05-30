@@ -18,33 +18,33 @@ using System.ComponentModel;
 
 public class PropertyContainerBase : INotifyPropertyChanged
 {
-#region INotifyPropertyChanged
+	#region INotifyPropertyChanged
 
-public event PropertyChangedEventHandler PropertyChanged;
+	public event PropertyChangedEventHandler PropertyChanged;
 
-#endregion
+	#endregion
 
-protected readonly IEventDispatcher dispatcher;
+	protected readonly IEventDispatcher dispatcher;
 
-protected PropertyContainerBase( IEventDispatcher dispatcher )
-{
-  this.dispatcher = dispatcher;
-}
+	protected PropertyContainerBase(IEventDispatcher dispatcher)
+	{
+		this.dispatcher = dispatcher;
+	}
 
-protected void RaisePropertyChanged( string propertyName )
-{
-  PropertyChangedEventHandler handler = this.PropertyChanged;
+	protected void RaisePropertyChanged(string propertyName)
+	{
+		PropertyChangedEventHandler handler = this.PropertyChanged;
 
-  if( handler != null )
-  {
-    PropertyChangedEventArgs args = new PropertyChangedEventArgs( propertyName );
+		if (handler != null)
+		{
+			PropertyChangedEventArgs args = new PropertyChangedEventArgs(propertyName);
 
-    /* AT
-    handler( this, args );
-    */
-    Action action = ( ) => handler( this, args );
+			/* AT
+			handler( this, args );
+			*/
+			Action action = () => handler(this, args);
 
-    this.dispatcher.Dispatch( action );
-  }
-}
+			this.dispatcher.Dispatch(action);
+		}
+	}
 }

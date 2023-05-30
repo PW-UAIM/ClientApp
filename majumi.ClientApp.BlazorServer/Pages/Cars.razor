@@ -4,42 +4,42 @@
 @inject IModel model
 
 @code {
-    private async Task ShowCars()
-    {
-        await controller.ClientLogInAsync();
-        await controller.SearchCarsAsync();
-    }
+	private async Task ShowCars()
+	{
+		await controller.ClientLogInAsync();
+		await controller.LoadCarsAsync();
+	}
 }
 <h5>My cars:</h5>
 <RadzenButton Text="Load cars" Click=ShowCars Style="width: 160px" />
 <table>
-    <thead>
-       <tr>
-            <th scope="col">CarID</th>
-            <th scope="col">Make</th>
-            <th scope="col">Model</th>
-            <th scope="col">Year</th>
-            <th scope="col">Mileage</th>
-            <th scope="col">EngineSize</th>
-            <th scope="col">VIN</th>
-            <th scope="col">LicensePlate</th>
-            <th scope="col">ClientID</th>
-       </tr>
-    </thead>
-    <tbody>
-        @foreach (CarData carData in model.CarList)
-        {
-            <tr>
-                <td>@carData.CarID</td>
-                <td>@carData.Make</td>
-                <td>@carData.Model</td>
-                <td>@carData.Year</td>
-                <td>@carData.Mileage</td>
-                <td>@carData.EngineSize</td>
-                <td>@carData.VIN</td>
-                <td>@carData.LicensePlate</td>
-                <td>@carData.ClientID</td>
-            </tr>
-        }
-    </tbody>
+	<thead>
+		<tr>
+			<th scope="col">CarID</th>
+			<th scope="col">Make</th>
+			<th scope="col">Model</th>
+			<th scope="col">Year</th>
+			<th scope="col">Mileage</th>
+			<th scope="col">EngineSize</th>
+			<th scope="col">VIN</th>
+			<th scope="col">LicensePlate</th>
+			<th scope="col">ClientID</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (CarData carData in model.CarList)
+		{
+			<tr>
+				<td>@carData.CarID</td>
+				<td>@carData.Make</td>
+				<td>@carData.Model</td>
+				<td>@carData.Year</td>
+				<td>@carData.Mileage</td>
+				<td>@carData.EngineSize</td>
+				<td>@carData.VIN</td>
+				<td>@carData.LicensePlate</td>
+				<td>@carData.ClientID</td>
+			</tr>
+		}
+	</tbody>
 </table>

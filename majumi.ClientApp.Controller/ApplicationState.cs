@@ -15,7 +15,7 @@ namespace majumi.ClientApp.Controller;
 
 public enum ApplicationState
 {
-List,
-Map
+	List,
+	Map
 }
 

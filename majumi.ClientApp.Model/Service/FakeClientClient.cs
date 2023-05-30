@@ -1,4 +1,4 @@
-﻿    //===============================================================================
+﻿//===============================================================================
 //
 // PlaZa System Platform
 //
@@ -21,47 +21,47 @@ using System.Net.Http;
 
 public class FakeClientClient : IClient
 {
-    private static List<CarData> cars = new List<CarData> { new CarData( ) { CarID = 0, Make = "Ford", Model = "Mustang", EngineSize = "2.3V", LicensePlate = "WPL 23300", ClientID = 1, Mileage = 300000, VIN = "98ZCC798ZSD", Year = 2023} };
-    private static List<ClientData> clients = new List<ClientData> { new ClientData() { ClientID = 1, Address = "Warszawa", Email = "kamil.slimak@smail.com", FirstName = "Kamil", LastName = "Slimak", InsuranceCompany = "EGiDA", PhoneNumber = "123456789", PolicyNumber = "123"} };
-    private static List<VisitData> visits = new List<VisitData> { new VisitData() { CarID = 0, ClientID = 1, MechanicID = 0, Notes = "", ServiceCost = 230, ServiceDate = DateTime.Now, ServiceStatus = "W trakcie", ServiceType = "Wymiana plynu w wycieraczkach", VisitID = 0 } };
-    
-    public bool AddCar(CarData car)
-    {
-        cars.Add(car);
+	private static List<CarData> cars = new List<CarData> { new CarData() { CarID = 0, Make = "Ford", Model = "Mustang", EngineSize = "2.3V", LicensePlate = "WPL 23300", ClientID = 1, Mileage = 300000, VIN = "98ZCC798ZSD", Year = 2023 } };
+	private static List<ClientData> clients = new List<ClientData> { new ClientData() { ClientID = 1, Address = "Warszawa", Email = "kamil.slimak@smail.com", FirstName = "Kamil", LastName = "Slimak", InsuranceCompany = "EGiDA", PhoneNumber = "123456789", PolicyNumber = "123" } };
+	private static List<VisitData> visits = new List<VisitData> { new VisitData() { CarID = 0, ClientID = 1, MechanicID = 0, Notes = "", ServiceCost = 230, ServiceDate = DateTime.Now, ServiceStatus = "W trakcie", ServiceType = "Wymiana plynu w wycieraczkach", VisitID = 0 } };
 
-        return true;
-    }
-    public bool AddVisit(VisitData visit)
-    {
-        visits.Add(visit);
-        
-        return true;
-    }
-    public ClientLoginStatus ClientLogIn(int clientID)
-    {
-        ClientData client = clients.Find((client) => client.ClientID == clientID);
+	public bool AddCar(CarData car)
+	{
+		cars.Add(car);
 
-        if(client != null)
-        {
-            return new ClientLoginStatus(true, client);
-        }
+		return true;
+	}
+	public bool AddVisit(VisitData visit)
+	{
+		visits.Add(visit);
 
-        return new ClientLoginStatus(false, null);
-    }
-    public List<CarData> GetClientCars(int clientID)
-    {
-        return cars.FindAll( (car) => car.ClientID == clientID);
-    }
-    public List<VisitData> GetClientVisits(int clientID)
-    {
-        return visits.FindAll((visit) => visit.ClientID == clientID);
-    }
-    public CarData GetCar(int clientID)
-    {
-        return cars.Find((car) => car.ClientID == clientID);
-    }
-    public VisitData GetVisit(int clientID)
-    {
-        return visits.Find((visit) => visit.ClientID == clientID);
-    }
+		return true;
+	}
+	public ClientLoginStatus ClientLogIn(int clientID)
+	{
+		ClientData client = clients.Find((client) => client.ClientID == clientID);
+
+		if (client != null)
+		{
+			return new ClientLoginStatus(true, client);
+		}
+
+		return new ClientLoginStatus(false, null);
+	}
+	public List<CarData> GetClientCars(int clientID)
+	{
+		return cars.FindAll((car) => car.ClientID == clientID);
+	}
+	public List<VisitData> GetClientVisits(int clientID)
+	{
+		return visits.FindAll((visit) => visit.ClientID == clientID);
+	}
+	public CarData GetCar(int clientID)
+	{
+		return cars.Find((car) => car.ClientID == clientID);
+	}
+	public VisitData GetVisit(int clientID)
+	{
+		return visits.Find((visit) => visit.ClientID == clientID);
+	}
 }

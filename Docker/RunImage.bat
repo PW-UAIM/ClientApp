@@ -1,21 +1,21 @@
-::docker login -u atomaszewski
+docker login -u majumi -p uaimrzadzi
 
 docker ps -a
 
-docker stop webapplication
+docker stop clientapp
 
 docker ps 
 
 docker images
 
-::docker pull atomaszewski/application:zsutpwpatterns-webapplication
+::docker pull majumi/clientapp:application
 
-docker run --name webapplication -p 5000:80 -it atomaszewski/application:zsutpwpatterns-webapplication
+docker run --name clientapp -p 5100:80 -it majumi/clientapp:application
 
 pause
 
-docker stop webapplication
+docker stop clientapp
 
-docker rm webapplication
+docker rm clientapp
 
 pause

@@ -21,61 +21,61 @@ using System.Net.Http;
 
 public class ClientClient : IClient
 {
-private readonly ServiceClient serviceClient;
+	private readonly ServiceClient serviceClient;
 
-public ClientClient( string serviceHost, int servicePort )
-{
-  Debug.Assert( condition: !String.IsNullOrEmpty( serviceHost ) && servicePort > 0 );
+	public ClientClient(string serviceHost, int servicePort)
+	{
+		Debug.Assert(condition: !String.IsNullOrEmpty(serviceHost) && servicePort > 0);
 
-  this.serviceClient = new ServiceClient( serviceHost, servicePort );
-}
+		this.serviceClient = new ServiceClient(serviceHost, servicePort);
+	}
 
-    public bool AddCar(CarData car)
-    {
-        throw new NotImplementedException();
-    }
-    public bool AddVisit(VisitData visit)
-    {
-        throw new NotImplementedException();
-    }
-    public ClientLoginStatus ClientLogIn(int clientID)
-    {
-        string callUri = String.Format("Network/login/{0}", clientID);
+	public bool AddCar(CarData car)
+	{
+		throw new NotImplementedException();
+	}
+	public bool AddVisit(VisitData visit)
+	{
+		throw new NotImplementedException();
+	}
+	public ClientLoginStatus ClientLogIn(int clientID)
+	{
+		string callUri = String.Format("Network/login/{0}", clientID);
 
-        ClientLoginStatus loginStatus = this.serviceClient.CallWebService<ClientLoginStatus>(HttpMethod.Get, callUri);
+		ClientLoginStatus loginStatus = this.serviceClient.CallWebService<ClientLoginStatus>(HttpMethod.Get, callUri);
 
-        return loginStatus;
-    }
-    public List<CarData> GetClientCars(int clientID)
-    {
-        string callUri = String.Format("Network/getAllCarsByClient/{0}", clientID);
+		return loginStatus;
+	}
+	public List<CarData> GetClientCars(int clientID)
+	{
+		string callUri = String.Format("Network/getAllCarsByClient/{0}", clientID);
 
-        List<CarData> cars = this.serviceClient.CallWebService<List<CarData>>(HttpMethod.Get, callUri);
+		List<CarData> cars = this.serviceClient.CallWebService<List<CarData>>(HttpMethod.Get, callUri);
 
-        return cars;
-    }
-    public List<VisitData> GetClientVisits(int clientID)
-    {
-        string callUri = String.Format("Network/getAllVisitsByClient/{0}", clientID);
+		return cars;
+	}
+	public List<VisitData> GetClientVisits(int clientID)
+	{
+		string callUri = String.Format("Network/getAllVisitsByClient/{0}", clientID);
 
-        List<VisitData> visits = this.serviceClient.CallWebService<List<VisitData>>(HttpMethod.Get, callUri);
+		List<VisitData> visits = this.serviceClient.CallWebService<List<VisitData>>(HttpMethod.Get, callUri);
 
-        return visits;
-    }
-    public CarData GetCar(int clientID)
-    {
-        string callUri = String.Format("Network/getCar/{0}", clientID);
+		return visits;
+	}
+	public CarData GetCar(int clientID)
+	{
+		string callUri = String.Format("Network/getCar/{0}", clientID);
 
-        CarData car = this.serviceClient.CallWebService<CarData>(HttpMethod.Get, callUri);
+		CarData car = this.serviceClient.CallWebService<CarData>(HttpMethod.Get, callUri);
 
-        return car;
-    }
-    public VisitData GetVisit(int clientID)
-    {
-        string callUri = String.Format("Network/getVisit/{0}", clientID);
+		return car;
+	}
+	public VisitData GetVisit(int clientID)
+	{
+		string callUri = String.Format("Network/getVisit/{0}", clientID);
 
-        VisitData visit = this.serviceClient.CallWebService<VisitData>(HttpMethod.Get, callUri);
+		VisitData visit = this.serviceClient.CallWebService<VisitData>(HttpMethod.Get, callUri);
 
-        return visit;
-    }
+		return visit;
+	}
 }

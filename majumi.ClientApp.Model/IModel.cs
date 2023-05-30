@@ -13,7 +13,4 @@
 
 namespace majumi.ClientApp.Model;
 
-public interface IModel : IData, IOperations
-{
-    
-}
+public interface IModel : IData, IOperations { }

@@ -19,36 +19,36 @@ using System.Linq;
 
 public partial class Model : IOperations
 {
-public void LoadCarList( )
-{
-  this.LoadCarTask( );
-}
+	public void LoadCarsList()
+	{
+		this.LoadCarTask();
+	}
 
-    public void ClientLogIn()
-    {
-        this.ClientLogInTask();
-    }
-    private void ClientLogInTask()
-    {
-        IClient clientClient = ClientClientFactory.GetClientClient();
-        ClientLoginStatus confirmation = clientClient.ClientLogIn(1);
-        if(confirmation.IsSuccesfull)
-        {
-            this.ClientID = confirmation.Client.ClientID;
-        } 
-        // this.LoginConfirmation = confirmation.IsSuccesfull;
-    }
-private void LoadCarTask( )
-{
-  IClient clientClient = ClientClientFactory.GetClientClient( );
+	public void ClientLogIn()
+	{
+		this.ClientLogInTask();
+	}
+	private void ClientLogInTask()
+	{
+		IClient clientClient = ClientClientFactory.GetClientClient();
+		ClientLoginStatus confirmation = clientClient.ClientLogIn(1);
+		if (confirmation.IsSuccesfull)
+		{
+			this.ClientID = confirmation.Client.ClientID;
+		}
+		// this.LoginConfirmation = confirmation.IsSuccesfull;
+	}
+	private void LoadCarTask()
+	{
+		IClient clientClient = ClientClientFactory.GetClientClient();
 
-  try
-  {
-    this.CarList = clientClient.GetClientCars(this.ClientID);
-  }
-  catch( Exception e )
-  {
-    Console.WriteLine( e.Message );
-  }
-}
+		try
+		{
+			this.CarList = clientClient.GetClientCars(this.ClientID);
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e.Message);
+		}
+	}
 }

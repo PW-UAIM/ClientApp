@@ -19,9 +19,6 @@ using System.ComponentModel;
 
 public interface IData : INotifyPropertyChanged
 {
-    int ClientID { get; set; }
-
-    List<CarData> CarList { get; }
-
-    CarData SelectedCar{ get; set; }
+	int ClientID { get; set; }
+	List<CarData> CarList { get; }
 }

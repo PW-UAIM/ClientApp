@@ -18,38 +18,37 @@ using System.Windows.Input;
 
 public partial class Controller : IController
 {
-public ApplicationState CurrentState
-{
-  get { return this.currentState; }
-  set
-  {
-    this.currentState = value;
+	public ApplicationState CurrentState
+	{
+		get { return this.currentState; }
+		set
+		{
+			this.currentState = value;
 
-    this.RaisePropertyChanged( "CurrentState" );
-  }
-}
-private ApplicationState currentState = ApplicationState.List;
+			this.RaisePropertyChanged("CurrentState");
+		}
+	}
+	private ApplicationState currentState = ApplicationState.List;
 
-public ICommand SearchCarCommands { get; private set; }
+	public ICommand ClientLogInCommand { get; private set; }
+	public async Task LoadCarsAsync()
+	{
+		await Task.Run(() => this.LoadCars());
+	}
+	public async Task ClientLogInAsync()
+	{
+		await Task.Run(() => this.ClientLogIn());
+	}
 
-    public ICommand ClientLogInCommands { get; private set; }
-    public async Task SearchCarsAsync( )
-{
-  await Task.Run( ( ) => this.SearchCars( ) );
-}
-public async Task ClientLogInAsync()
-{
-    await Task.Run(() => this.ClientLogIn());
-}
+	public ICommand LoadCarsCommand { get; private set; }
+	private void LoadCars()
+	{
+		this.Model.LoadCarsList();
+	}
 
-    private void SearchCars( )
-{
-  this.Model.LoadCarList( );
-}
 
-   
-    private void ClientLogIn()
-    {
-        this.Model.ClientLogIn();
-    }
+	private void ClientLogIn()
+	{
+		this.Model.ClientLogIn();
+	}
 }

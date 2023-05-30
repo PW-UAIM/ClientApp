@@ -14,7 +14,6 @@ RUN dotnet publish -c Production -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 5100
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "majumi.ClientApp.BlazorServer.dll"]

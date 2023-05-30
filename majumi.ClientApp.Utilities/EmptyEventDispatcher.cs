@@ -17,10 +17,10 @@ using System;
 
 public class EmptyEventDispatcher : IEventDispatcher
 {
-#region IEventDispatcher
+	#region IEventDispatcher
 
-public void Dispatch( Action eventAction )
-{
-}
-#endregion
+	public void Dispatch(Action eventAction)
+	{
+	}
+	#endregion
 }

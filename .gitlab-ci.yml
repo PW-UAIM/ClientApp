@@ -1,6 +1,7 @@
 stages:
     - build
     - test
+    - pack
 
 build:
     stage: build
@@ -22,5 +23,15 @@ test:
       - dotnet build -c Debug
       - dotnet build -c Release
       - dotnet test
+    tags:
+      - all, integration
+
+
+pack:
+    stage: pack
+    before_script:
+      - cd Docker
+    script:
+      - BuildPushImage.bat
     tags:
       - all, integration

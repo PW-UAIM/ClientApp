@@ -15,8 +15,8 @@ namespace majumi.ClientApp.Model;
 
 public static class ClientClientFactory
 {
-public static IClient GetClientClient( )
-{
-  return new FakeClientClient( );
-}
+	public static IClient GetClientClient()
+	{
+		return new FakeClientClient();
+	}
 }

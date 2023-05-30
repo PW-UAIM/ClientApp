@@ -16,18 +16,16 @@ namespace majumi.ClientApp.Controller;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows.Input;
-
 using majumi.ClientApp.Model;
 
 public interface IController : INotifyPropertyChanged
 {
-IModel Model { get; }
+	IModel Model { get; }
+	ApplicationState CurrentState { get; }
 
-ApplicationState CurrentState { get; }
+	ICommand LoadCarsCommand { get; }
+	Task LoadCarsAsync();
 
-ICommand SearchCarCommands { get; }
-
-ICommand ClientLogInCommands { get; }
-Task SearchCarsAsync( );
-Task ClientLogInAsync();
+	ICommand ClientLogInCommand { get; }
+	Task ClientLogInAsync();
 }

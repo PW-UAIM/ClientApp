@@ -25,45 +25,45 @@ using majumi.ClientApp.Utilities;
 
 public class Startup
 {
-public Startup( IConfiguration configuration )
-{
-  Configuration = configuration;
-}
+	public Startup(IConfiguration configuration)
+	{
+		Configuration = configuration;
+	}
 
-public IConfiguration Configuration { get; }
+	public IConfiguration Configuration { get; }
 
-public void ConfigureServices( IServiceCollection services )
-{
-  services.AddRazorPages( );
-  services.AddServerSideBlazor( );
+	public void ConfigureServices(IServiceCollection services)
+	{
+		services.AddRazorPages();
+		services.AddServerSideBlazor();
 
-  services.AddScoped<IEventDispatcher, EmptyEventDispatcher>( );
-  services.AddScoped<IModel, Model>( );
-  services.AddScoped<IController, Controller>( );
-}
+		services.AddScoped<IEventDispatcher, EmptyEventDispatcher>();
+		services.AddScoped<IModel, Model>();
+		services.AddScoped<IController, Controller>();
+	}
 
-public void Configure( IApplicationBuilder app, IWebHostEnvironment env )
-{
-  if( env.IsDevelopment( ) )
-  {
-    app.UseDeveloperExceptionPage( );
-  }
-  else
-  {
-    app.UseExceptionHandler( "/Error" );
-    app.UseHsts( );
-  }
-  /* AT
-  app.UseHttpsRedirection( );
-  */
-  app.UseStaticFiles( );
+	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+	{
+		if (env.IsDevelopment())
+		{
+			app.UseDeveloperExceptionPage();
+		}
+		else
+		{
+			app.UseExceptionHandler("/Error");
+			app.UseHsts();
+		}
+		/* AT
+		app.UseHttpsRedirection( );
+		*/
+		app.UseStaticFiles();
 
-  app.UseRouting( );
+		app.UseRouting();
 
-  app.UseEndpoints( endpoints =>
-  {
-    endpoints.MapBlazorHub( );
-    endpoints.MapFallbackToPage( "/_Host" );
-  } );
-}
+		app.UseEndpoints(endpoints =>
+		{
+			endpoints.MapBlazorHub();
+			endpoints.MapFallbackToPage("/_Host");
+		});
+	}
 }

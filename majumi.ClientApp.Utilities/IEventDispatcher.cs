@@ -17,5 +17,5 @@ using System;
 
 public interface IEventDispatcher
 {
-void Dispatch( Action action );
+	void Dispatch(Action action);
 }
