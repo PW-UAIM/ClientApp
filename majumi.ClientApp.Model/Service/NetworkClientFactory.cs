@@ -11,17 +11,12 @@
 //
 //===============================================================================
 
-using majumi.CarService.ClientsAppService.Rest.Model.Model;
-
 namespace majumi.ClientApp.Model;
 
-public interface IOperations
+public static class NetworkClientFactory
 {
-	void ClientLogIn();
-	void GetCarById();
-	void GetVisitById();
-	void AddCar();
-	void AddVisit();
-	void LoadCarsList();
-	void LoadVisitsList();
+	public static IClient GetNetworkClient()
+	{
+		return new FakeNetworkClient();
+	}
 }

@@ -17,15 +17,31 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows.Input;
 using majumi.ClientApp.Model;
+using majumi.CarService.ClientsAppService.Rest.Model.Model;
 
 public interface IController : INotifyPropertyChanged
 {
 	IModel Model { get; }
 	ApplicationState CurrentState { get; }
 
+	ICommand ClientLogInCommand { get; }
+	Task ClientLogInAsync();
+
 	ICommand LoadCarsCommand { get; }
 	Task LoadCarsAsync();
 
-	ICommand ClientLogInCommand { get; }
-	Task ClientLogInAsync();
+	ICommand LoadVisitsCommand { get; }
+	Task LoadVisitsAsync();
+
+	ICommand AddCarCommand { get; }
+	Task AddCarAsync();
+
+	ICommand AddVisitCommand { get;  }
+	Task AddVisitAsync();
+
+	ICommand GetCarCommand { get;  }
+	Task GetCarAsync();
+
+	ICommand GetVisitCommand { get; }
+	Task GetVisitAsync();
 }

@@ -36,6 +36,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DockerCompose", "DockerComp
 		DockerCompose\Docker_StopSystem.bat = DockerCompose\Docker_StopSystem.bat
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{51F3B298-0BE6-4804-980E-F0654C5CAB4F}"
+	ProjectSection(SolutionItems) = preProject
+		Kubernetes\dashboard_sa_secret.yaml = Kubernetes\dashboard_sa_secret.yaml
+		Kubernetes\dashboard_sa_token.txt = Kubernetes\dashboard_sa_token.txt
+		Kubernetes\kubectl.yaml = Kubernetes\kubectl.yaml
+		Kubernetes\Kubernetes_InstallDashboard.bat = Kubernetes\Kubernetes_InstallDashboard.bat
+		Kubernetes\Kubernetes_RegisterDockerSecret.bat = Kubernetes\Kubernetes_RegisterDockerSecret.bat
+		Kubernetes\Kubernetes_ShowCluster.bat = Kubernetes\Kubernetes_ShowCluster.bat
+		Kubernetes\Kubernetes_ShowSystem.bat = Kubernetes\Kubernetes_ShowSystem.bat
+		Kubernetes\Kubernetes_StartDashboard.url = Kubernetes\Kubernetes_StartDashboard.url
+		Kubernetes\Kubernetes_StartDashboardProxy.bat = Kubernetes\Kubernetes_StartDashboardProxy.bat
+		Kubernetes\Kubernetes_StartSystem.bat = Kubernetes\Kubernetes_StartSystem.bat
+		Kubernetes\Kubernetes_StopSystem.bat = Kubernetes\Kubernetes_StopSystem.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

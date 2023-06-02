@@ -23,32 +23,80 @@ public partial class Controller : IController
 		get { return this.currentState; }
 		set
 		{
-			this.currentState = value;
-
-			this.RaisePropertyChanged("CurrentState");
+			currentState = value;
+			RaisePropertyChanged("CurrentState");
 		}
 	}
 	private ApplicationState currentState = ApplicationState.List;
 
 	public ICommand ClientLogInCommand { get; private set; }
-	public async Task LoadCarsAsync()
+	private void ClientLogIn()
 	{
-		await Task.Run(() => this.LoadCars());
+		Model.ClientLogIn();
 	}
 	public async Task ClientLogInAsync()
 	{
-		await Task.Run(() => this.ClientLogIn());
+		await Task.Run(() => ClientLogIn());
 	}
 
 	public ICommand LoadCarsCommand { get; private set; }
 	private void LoadCars()
 	{
-		this.Model.LoadCarsList();
+		Model.LoadCarsList();
 	}
-
-
-	private void ClientLogIn()
+	public async Task LoadCarsAsync()
 	{
-		this.Model.ClientLogIn();
+		await Task.Run(() => LoadCars());
 	}
+
+	public ICommand LoadVisitsCommand { get; private set; }
+	private void LoadVisits()
+	{
+		Model.LoadVisitsList();
+	}
+	public async Task LoadVisitsAsync()
+	{
+		await Task.Run(() => LoadVisits());
+	}
+
+	public ICommand AddCarCommand { get; private set; }
+	private void AddCar()
+	{
+		Model.AddCar();
+	}
+	public async Task AddCarAsync()
+	{
+		await Task.Run(() => AddCar());
+	}
+
+	public ICommand AddVisitCommand { get; private set; }
+	private void AddVisit()
+	{
+		Model.AddVisit();
+	}
+	public async Task AddVisitAsync()
+	{
+		await Task.Run(() => AddVisit());
+	}
+
+	public ICommand GetCarCommand { get; private set; }
+	private void GetCar()
+	{
+		Model.GetCarById();
+	}
+	public async Task GetCarAsync()
+	{
+		await Task.Run(() => GetCar());
+	}
+
+	public ICommand GetVisitCommand { get; private set; }
+	private void GetVisit()
+	{
+		Model.GetVisitById();
+	}
+	public async Task GetVisitAsync()
+	{
+		await Task.Run(() => GetVisit());
+	}
+
 }
