@@ -2,3 +2,24 @@
 @using majumi.CarService.ClientsAppService.Rest.Model.Model;
 @inject IController controller
 @inject IModel model
+@inject NavigationManager NavManager
+
+<RadzenNumeric ShowUpDown="false" TValue="int"  @bind-Value=@numericInputValue Placeholder="Enter ClientID" />
+<RadzenButton Click=ClientLogIn Text="Primary" ButtonStyle="ButtonStyle.Primary" />
+<RadzenLabel @bind-Text=@labelText></RadzenLabel>
+@code {
+	int numericInputValue;
+	string labelText;
+	private async Task ClientLogIn()
+	{
+		model.ClientID = numericInputValue;
+		await controller.ClientLogInAsync();
+		Console.WriteLine($"[DEBUG] Logowanie jako klient {numericInputValue}, status ({model.LoginConfirmation}), aktualnie zalogowano jako ClientID={model.ClientID}");
+		if(model.LoginConfirmation == true) {
+			NavManager.NavigateTo("/account");
+		} else
+		{
+			labelText = "There is no client with such an id";
+		}
+	}
+}

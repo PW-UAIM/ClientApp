@@ -2,7 +2,6 @@ stages:
     - build
     - test
     - pack
-    - push   
 
 build:
     stage: build
@@ -17,6 +16,7 @@ build:
 
 test:
     stage: test
+    needs: [build]
     before_script:
       - cd majumi.ClientApp.Tests
     script:
@@ -30,6 +30,7 @@ test:
 
 pack:
     stage: pack
+    needs: [test]
     before_script:
       - cd Docker
     script:

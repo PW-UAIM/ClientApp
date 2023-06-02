@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.ConstrainedExecution;
 
 public class FakeNetworkClient : IClient
 {
@@ -62,12 +63,14 @@ public class FakeNetworkClient : IClient
 
 	public bool AddCar(CarData car)
 	{
+		car.CarID = cars.Count() + 1;
 		cars.Add(car);
 
 		return true;
 	}
 	public bool AddVisit(VisitData visit)
 	{
+		visit.VisitID = visits.Count() + 1;
 		visits.Add(visit);
 
 		return true;
