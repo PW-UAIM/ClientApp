@@ -20,6 +20,11 @@
 
 	protected override async Task OnInitializedAsync()
 	{
+		//Check if client is logged in
+		if (model.ClientID == 0 || model.LoginConfirmation == false)
+		{
+			NavManager.NavigateTo("/login");
+		}
 		await controller.LoadCarsAsync();
 	}
 

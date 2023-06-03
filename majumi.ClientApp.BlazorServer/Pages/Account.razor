@@ -26,6 +26,15 @@
     int carGridCount;
     bool isCarGridLoading = false;
 
+    protected override void OnInitialized()
+	{
+		//Check if client is logged in
+		if (model.ClientID == 0 || model.LoginConfirmation == false)
+		{
+			NavManager.NavigateTo("/login");
+		}
+	}
+
     async Task LoadCarData(LoadDataArgs args)
     {
         isCarGridLoading = true;

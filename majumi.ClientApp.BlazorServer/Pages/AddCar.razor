@@ -24,6 +24,14 @@
 	int? mileageInputValue;
 	int? yearInputValue;
 	string labelText;
+	protected override void OnInitialized()
+	{
+		//Check if client is logged in
+		if (model.ClientID == 0 || model.LoginConfirmation == false)
+		{
+			NavManager.NavigateTo("/login");
+		}
+	}
 
 	private async Task AddCarTask()
 	{

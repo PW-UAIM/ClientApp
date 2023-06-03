@@ -16,6 +16,7 @@ namespace majumi.ClientApp.Model;
 using majumi.CarService.ClientsAppService.Rest.Model.Model;
 using System.Collections.Generic;
 using System;
+using System.Net.Http;
 
 public class NetworkClient : IClient
 {
@@ -23,10 +24,7 @@ public class NetworkClient : IClient
 
 	public NetworkClient(string serviceHost, int servicePort)
 	{
-		throw new NotImplementedException();
-		/*Debug.Assert(condition: !String.IsNullOrEmpty(serviceHost) && servicePort > 0);
-		
-		this.serviceClient = new ServiceClient(serviceHost, servicePort);*/
+		this.serviceClient = new ServiceClient(serviceHost, servicePort);
 	}
 
 	public bool AddCar(CarData car)
@@ -39,47 +37,42 @@ public class NetworkClient : IClient
 	}
 	public ClientLoginStatus ClientLogIn(int clientID)
 	{
-		throw new NotImplementedException();
-		/*string callUri = String.Format("Network/login/{0}", clientID);
+		string callUri = String.Format("login/{0}", clientID);
 
 		ClientLoginStatus loginStatus = this.serviceClient.CallWebService<ClientLoginStatus>(HttpMethod.Get, callUri);
 
-		return loginStatus;*/
+		return loginStatus;
 	}
 	public List<CarData> GetClientCars(int clientID)
 	{
-		throw new NotImplementedException();
-		/*string callUri = String.Format("Network/getAllCarsByClient/{0}", clientID);
+		string callUri = String.Format("getAllCarsByClient/{0}", clientID);
 
 		List<CarData> cars = this.serviceClient.CallWebService<List<CarData>>(HttpMethod.Get, callUri);
 
-		return cars;*/
+		return cars;
 	}
 	public List<VisitData> GetClientVisits(int clientID)
 	{
-		throw new NotImplementedException();
-		/*string callUri = String.Format("Network/getAllVisitsByClient/{0}", clientID);
+		string callUri = String.Format("getAllVisitsByClient/{0}", clientID);
 
 		List<VisitData> visits = this.serviceClient.CallWebService<List<VisitData>>(HttpMethod.Get, callUri);
 
-		return visits;*/
+		return visits;
 	}
 	public CarData GetCar(int clientID)
 	{
-		throw new NotImplementedException();
-		/*string callUri = String.Format("Network/getCar/{0}", clientID);
+		string callUri = String.Format("getCar/{0}", clientID);
 
 		CarData car = this.serviceClient.CallWebService<CarData>(HttpMethod.Get, callUri);
 
-		return car;*/
+		return car;
 	}
 	public VisitData GetVisit(int clientID)
 	{
-		throw new NotImplementedException();
-		/*string callUri = String.Format("Network/getVisit/{0}", clientID);
+		string callUri = String.Format("getVisit/{0}", clientID);
 
 		VisitData visit = this.serviceClient.CallWebService<VisitData>(HttpMethod.Get, callUri);
 
-		return visit;*/
+		return visit;
 	}
 }

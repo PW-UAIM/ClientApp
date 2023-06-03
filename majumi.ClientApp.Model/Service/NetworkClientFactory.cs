@@ -17,6 +17,6 @@ public static class NetworkClientFactory
 {
 	public static IClient GetNetworkClient()
 	{
-		return new NetworkClient("localhost", 80);
+		return new NetworkClient("localhost", 5010);
 	}
 }
