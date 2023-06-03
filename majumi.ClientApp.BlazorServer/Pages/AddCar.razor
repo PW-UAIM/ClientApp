@@ -4,14 +4,16 @@
 @inject IModel model
 @inject NavigationManager NavManager
 
+<h2>Add Car Page</h2>
+
 <RadzenTextBox Placeholder="Make"@bind-Value=@makeInputValue/>
 <RadzenTextBox Placeholder="Model" @bind-Value=@modelInputValue/>
 <RadzenTextBox Placeholder="EngineSize" @bind-Value=@engineSizeInputValue />
 <RadzenTextBox Placeholder="LicensePlate" @bind-Value=@licensePlateInputValue />
 <RadzenTextBox Placeholder="VIN" @bind-Value=@vinInputValue />
-<RadzenNumeric Placeholder="Mileage" TValue="int" @bind-Value=@mileageInputValue ShowUpDown="false"/>
-<RadzenNumeric Placeholder="Year" TValue="int" @bind-Value=@yearInputValue ShowUpDown="false" />
-<RadzenButton Click=AddCarTask Text="Add" ButtonStyle="ButtonStyle.Primary" />
+<RadzenNumeric Placeholder="Mileage" TValue="int?" @bind-Value=@mileageInputValue ShowUpDown="false"/>
+<RadzenNumeric Placeholder="Year" TValue="int?" @bind-Value=@yearInputValue ShowUpDown="false" />
+<RadzenButton Click=AddCarTask Text="Add car" ButtonStyle="ButtonStyle.Primary" />
 
 @code {
 	string makeInputValue;
@@ -19,24 +21,24 @@
 	string engineSizeInputValue;
 	string licensePlateInputValue;
 	string vinInputValue;
-	int mileageInputValue;
-	int yearInputValue;
+	int? mileageInputValue;
+	int? yearInputValue;
 	string labelText;
 
 	private async Task AddCarTask()
 	{
 		CarData car = new CarData()
-			{
-				CarID = 0,
-				Make = makeInputValue,
-				Model = modelInputValue,
-				EngineSize = engineSizeInputValue,
-				LicensePlate = licensePlateInputValue,
-				ClientID = model.ClientID,
-				Mileage = mileageInputValue,
-				VIN = vinInputValue,
-				Year = yearInputValue
-			};
+		{
+			CarID = 0,
+			Make = makeInputValue,
+			Model = modelInputValue,
+			EngineSize = engineSizeInputValue,
+			LicensePlate = licensePlateInputValue,
+			ClientID = model.ClientID,
+			Mileage = (int)mileageInputValue,
+			VIN = vinInputValue,
+			Year = (int)yearInputValue
+		};
 		model.AddedCar = car;
 		await controller.AddCarAsync();
 

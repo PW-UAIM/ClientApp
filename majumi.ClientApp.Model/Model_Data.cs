@@ -22,115 +22,115 @@ public partial class Model : IData
 	private int clientID;
 	public int ClientID
 	{
-		get { return this.clientID; }
+		get { return clientID; }
 		set
 		{
-			this.clientID = value;
-			this.RaisePropertyChanged("ClientID");
+			clientID = value;
+			RaisePropertyChanged(nameof(ClientID));
 		}
 	}
 
 	private int searchedCarID;
 	public int SearchedCarID
 	{
-		get { return this.searchedCarID; }
+		get { return searchedCarID; }
 		set
 		{
-			this.searchedCarID = value;
-			this.RaisePropertyChanged("SearchedCarID");
+			searchedCarID = value;
+			RaisePropertyChanged(nameof(SearchedCarID));
 		}
 	}
 
 	private int searchedVisitID;
 	public int SearchedVisitID
 	{
-		get { return this.searchedVisitID; }
+		get { return searchedVisitID; }
 		set
 		{
-			this.searchedVisitID = value;
-			this.RaisePropertyChanged("SearchedVisitID");
+			searchedVisitID = value;
+			RaisePropertyChanged(nameof(SearchedVisitID));
 		}
 	}
 
 	private bool loginConfirmation;
 	public bool LoginConfirmation
 	{
-		get { return this.loginConfirmation; }
+		get { return loginConfirmation; }
 		private set
 		{
-			this.loginConfirmation = value;
-			this.RaisePropertyChanged("LoginConfirmation");
+			loginConfirmation = value;
+			RaisePropertyChanged(nameof(LoginConfirmation));
 		}
 	}
 
 	private List<CarData> carList = new List<CarData>();
 	public List<CarData> CarList
 	{
-		get { return this.carList; }
+		get { return carList; }
 		private set
 		{
-			this.carList = value;
-			this.RaisePropertyChanged("CarList");
+			carList = value;
+			RaisePropertyChanged(nameof(CarList));
 		}
 	}
 	private List<VisitData> visitList = new List<VisitData>();
 	public List<VisitData> VisitList
 	{
-		get { return this.visitList; }
+		get { return visitList; }
 		private set
 		{
-			this.visitList = value;
-			this.RaisePropertyChanged("VisitList");
+			visitList = value;
+			RaisePropertyChanged(nameof(VisitList));
 		}
 	}
 	private CarData selectedCar;
 	public CarData SelectedCar
 	{
-		get { return this.selectedCar; }
+		get { return selectedCar; }
 		set
 		{
-			this.selectedCar = value;
-			this.RaisePropertyChanged("SelectedCar");
+			selectedCar = value;
+			RaisePropertyChanged(nameof(SelectedCar));
 		}
 	}
 	private CarData addedCar;
 	public CarData AddedCar
 	{
-		get { return this.addedCar; }
+		get { return addedCar; }
 		set
 		{
-			this.addedCar = value;
-			this.RaisePropertyChanged("AddedCar");
+			addedCar = value;
+			RaisePropertyChanged(nameof(AddedCar));
 		}
 	}
 	private VisitData selecetedVisit;
 	public VisitData SelectedVisit
 	{
-		get { return this.selecetedVisit; }
+		get { return selecetedVisit; }
 		set
 		{
-			this.selecetedVisit = value;
-			this.RaisePropertyChanged("SelecetedVisit");
+			selecetedVisit = value;
+			RaisePropertyChanged(nameof(SelectedVisit));
 		}
 	}
 	private VisitData addedVisit;
 	public VisitData AddedVisit
 	{
-		get { return this.addedVisit; }
+		get { return addedVisit; }
 		set
 		{
-			this.addedVisit = value;
-			this.RaisePropertyChanged("AddedVisit");
+			addedVisit = value;
+			RaisePropertyChanged(nameof(AddedVisit));
 		}
 	}
 	private DateOnly selectedDate;
 	public DateOnly SelectedDate
 	{
-		get { return this.selectedDate; }
+		get { return selectedDate; }
 		set
 		{
-			this.selectedDate = value;
-			this.RaisePropertyChanged("SelecetedDate");
+			selectedDate = value;
+			RaisePropertyChanged(nameof(SelectedDate));
 		}
 	}
 }

@@ -14,10 +14,8 @@
 namespace majumi.ClientApp.Model;
 
 using majumi.CarService.ClientsAppService.Rest.Model.Model;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
+using System;
 
 public class NetworkClient : IClient
 {

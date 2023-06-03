@@ -18,4 +18,3 @@ public enum ApplicationState
 	List,
 	Map
 }
-

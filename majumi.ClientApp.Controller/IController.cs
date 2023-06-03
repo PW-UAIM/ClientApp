@@ -17,7 +17,6 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows.Input;
 using majumi.ClientApp.Model;
-using majumi.CarService.ClientsAppService.Rest.Model.Model;
 
 public interface IController : INotifyPropertyChanged
 {

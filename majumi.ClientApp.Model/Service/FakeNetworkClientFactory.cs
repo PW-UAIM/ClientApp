@@ -13,13 +13,10 @@
 
 namespace majumi.ClientApp.Model;
 
-public interface IOperations
+public static class FakeNetworkClientFactory
 {
-	void ClientLogIn();
-	void GetCarById();
-	void GetVisitById();
-	void AddCar();
-	void AddVisit();
-	void LoadCarsList();
-	void LoadVisitsList();
+	public static IClient GetNetworkClient()
+	{
+		return new FakeNetworkClient();
+	}
 }

@@ -28,7 +28,7 @@ public class ServiceClient
 
 	public ServiceClient(string serviceHost, int servicePort)
 	{
-		Debug.Assert(condition: !String.IsNullOrEmpty(serviceHost) && servicePort > 0);
+		Debug.Assert(condition: !string.IsNullOrEmpty(serviceHost) && servicePort > 0);
 
 		this.serviceHost = serviceHost;
 		this.servicePort = (ushort)servicePort;

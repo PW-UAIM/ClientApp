@@ -4,10 +4,11 @@
 @inject IModel model
 @inject NavigationManager NavManager
 
-<RadzenDropDown @bind-Value=@carIDInputValue Data=@model.CarList TextProperty="Model" ValueProperty="CarID" Style="width: 100%; max-width: 400px;" />
+<h2>Add Visit Page</h2>
 
-<RadzenTextArea Placeholder="Notes" @bind-Value=@notesInputValue />
-<RadzenButton Click=AddVisitTask Text="Add" ButtonStyle="ButtonStyle.Primary" />
+<RadzenDropDown @bind-Value=@carIDInputValue Placeholder="Choose your car" Data=@model.CarList TextProperty="Model" ValueProperty="CarID" Style="width: 100%; max-width: 400px;" />
+<RadzenTextArea Placeholder="Describe the fault here..." @bind-Value=@notesInputValue Style="width: 100%; max-width: 400px;" />
+<RadzenButton Click=AddVisitTask Text="Add visit" ButtonStyle="ButtonStyle.Primary" />
 
 @code {
 	// <RadzenDropDown @bind-Value=@serviceInputValue Data="@(Enum.GetValues(typeof(Service)).Cast<Enum>())" Style="width: 100%; max-width: 400px;" />
@@ -19,24 +20,23 @@
 
 	protected override async Task OnInitializedAsync()
 	{
-		Console.Write("INIT");
 		await controller.LoadCarsAsync();
 	}
 
 	private async Task AddVisitTask()
 	{
 		VisitData visit = new VisitData()
-			{
-				VisitID = -100,
-				CarID = carIDInputValue,
-				ClientID = model.ClientID,
-				MechanicID = -100,
-				Notes = notesInputValue,
-				ServiceCost = -100,
-				ServiceDate = DateTime.Now,
-				ServiceStatus = "Implement enum",
-				ServiceType = "Also implement enum and then allow user to choose"
-			};
+		{
+			VisitID = -100,
+			CarID = carIDInputValue,
+			ClientID = model.ClientID,
+			MechanicID = -100,
+			Notes = notesInputValue,
+			ServiceCost = -100,
+			ServiceDate = DateTime.Now,
+			ServiceStatus = "Implement enum",
+			ServiceType = "Also implement enum and then allow user to choose"
+		};
 		model.AddedVisit = visit;
 		await controller.AddVisitAsync();
 

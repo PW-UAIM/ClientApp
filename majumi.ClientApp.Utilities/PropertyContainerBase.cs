@@ -33,7 +33,7 @@ public class PropertyContainerBase : INotifyPropertyChanged
 
 	protected void RaisePropertyChanged(string propertyName)
 	{
-		PropertyChangedEventHandler handler = this.PropertyChanged;
+		PropertyChangedEventHandler handler = PropertyChanged;
 
 		if (handler != null)
 		{
@@ -44,7 +44,7 @@ public class PropertyContainerBase : INotifyPropertyChanged
 			*/
 			Action action = () => handler(this, args);
 
-			this.dispatcher.Dispatch(action);
+			dispatcher.Dispatch(action);
 		}
 	}
 }

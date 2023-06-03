@@ -4,8 +4,10 @@
 @inject IModel model
 @inject NavigationManager NavManager
 
+<h2>Login Page</h2>
+
 <RadzenNumeric ShowUpDown="false" TValue="int"  @bind-Value=@numericInputValue Placeholder="Enter ClientID" />
-<RadzenButton Click=ClientLogIn Text="Primary" ButtonStyle="ButtonStyle.Primary" />
+<RadzenButton Click=ClientLogIn Text="Login" ButtonStyle="ButtonStyle.Primary" />
 <RadzenLabel @bind-Text=@labelText></RadzenLabel>
 @code {
 	int numericInputValue;

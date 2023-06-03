@@ -17,8 +17,6 @@ using majumi.CarService.ClientsAppService.Rest.Model.Model;
 using System.Collections.Generic;
 using System;
 using System.Linq;
-using System.Net.Http;
-using System.Runtime.ConstrainedExecution;
 
 public class FakeNetworkClient : IClient
 {

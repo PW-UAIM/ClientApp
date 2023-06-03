@@ -20,16 +20,16 @@ public partial class Model : IOperations
 {
 	private void ClientLogInTask()
 	{
-		IClient networkClient = NetworkClientFactory.GetNetworkClient();
+		IClient networkClient = FakeNetworkClientFactory.GetNetworkClient();
 
 		try
 		{
 			ClientLoginStatus confirmation = networkClient.ClientLogIn(ClientID);
 			if (!confirmation.IsSuccesfull)
 			{
-				this.ClientID = 0;
+				ClientID = 0;
 			}
-			this.LoginConfirmation = confirmation.IsSuccesfull;
+			LoginConfirmation = confirmation.IsSuccesfull;
 		}
 		catch (Exception e)
 		{
@@ -39,18 +39,18 @@ public partial class Model : IOperations
 	}
 	public void ClientLogIn()
 	{
-		this.ClientLogInTask();
+		ClientLogInTask();
 	}
 
 	private void GetCarByIdTask()
 	{
-		IClient networkClient = NetworkClientFactory.GetNetworkClient();
+		IClient networkClient = FakeNetworkClientFactory.GetNetworkClient();
 		try
 		{
 			CarData car = networkClient.GetCar(searchedCarID);
 			if (car != null)
 			{
-				this.SelectedCar = car;
+				SelectedCar = car;
 			}
 		}
 		catch (Exception e)
@@ -60,19 +60,19 @@ public partial class Model : IOperations
 	}
 	public void GetCarById()
 	{
-		this.GetCarByIdTask();
+		GetCarByIdTask();
 	}
 
 	private void GetVisitByIdTask()
 	{
-		IClient networkClient = NetworkClientFactory.GetNetworkClient();
+		IClient networkClient = FakeNetworkClientFactory.GetNetworkClient();
 		
 		try
 		{
 			VisitData visit = networkClient.GetVisit(searchedVisitID);
 			if (visit != null)
 			{
-				this.SelectedVisit = visit;
+				SelectedVisit = visit;
 			}
 		}
 		catch (Exception e)
@@ -82,11 +82,11 @@ public partial class Model : IOperations
 	}
 	public void GetVisitById()
 	{
-		this.GetVisitByIdTask();
+		GetVisitByIdTask();
 	}
 	private void AddCarTask()
 	{
-		IClient clientClient = NetworkClientFactory.GetNetworkClient();
+		IClient clientClient = FakeNetworkClientFactory.GetNetworkClient();
 
 		try {
 			clientClient.AddCar(addedCar);
@@ -98,11 +98,11 @@ public partial class Model : IOperations
 	}
 	public void AddCar()
 	{
-		this.AddCarTask();
+		AddCarTask();
 	}
 	private void AddVisitTask()
 	{
-		IClient clientClient = NetworkClientFactory.GetNetworkClient();
+		IClient clientClient = FakeNetworkClientFactory.GetNetworkClient();
 
 		try
 		{
@@ -115,16 +115,16 @@ public partial class Model : IOperations
 	}
 	public void AddVisit()
 	{
-		this.AddVisitTask();
+		AddVisitTask();
 	}
 
 	private void LoadVisitsTask()
 	{
-		IClient clientClient = NetworkClientFactory.GetNetworkClient();
+		IClient clientClient = FakeNetworkClientFactory.GetNetworkClient();
 
 		try
 		{
-			this.VisitList = clientClient.GetClientVisits(this.ClientID);
+			VisitList = clientClient.GetClientVisits(ClientID);
 		}
 		catch (Exception e)
 		{
@@ -133,16 +133,16 @@ public partial class Model : IOperations
 	}
 	public void LoadVisitsList()
 	{
-		this.LoadVisitsTask();
+		LoadVisitsTask();
 	}
 
 	private void LoadCarTask()
 	{
-		IClient clientClient = NetworkClientFactory.GetNetworkClient();
+		IClient clientClient = FakeNetworkClientFactory.GetNetworkClient();
 
 		try
 		{
-			this.CarList = clientClient.GetClientCars(this.ClientID);
+			CarList = clientClient.GetClientCars(ClientID);
 		}
 		catch (Exception e)
 		{
@@ -151,7 +151,6 @@ public partial class Model : IOperations
 	}
 	public void LoadCarsList()
 	{
-		this.LoadCarTask();
+		LoadCarTask();
 	}
-	
 }

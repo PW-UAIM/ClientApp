@@ -19,7 +19,7 @@
 		<RadzenDataGridColumn TItem="CarData" Property="Year" Title="Year" />
     </Columns>
 </RadzenDataGrid>
-<RadzenButton Text="AddVisit" Click=RedirectToAddVisit Style="width: 160px" />
+<RadzenButton Text="Add car" Click=RedirectToAddCar Style="width: 160px" />
 @code {
     RadzenDataGrid<CarData> carGrid;
     IEnumerable<CarData> cars;
@@ -36,9 +36,9 @@
         isCarGridLoading = false;
     }
 
-    private void RedirectToAddVisit()
+    private void RedirectToAddCar()
     {
-        NavManager.NavigateTo("/addVisit");
+        NavManager.NavigateTo("/addCar");
     }
 }
 
@@ -55,7 +55,7 @@
         <RadzenDataGridColumn TItem="VisitData" Property="ServiceType" Title="ServiceType"/>
     </Columns>
 </RadzenDataGrid>
-<RadzenButton Text="Add car" Click=RedirectToAddCar Style="width: 160px" />
+<RadzenButton Text="Add visit" Click=RedirectToAddVisit Style="width: 160px" />
 @code {
     RadzenDataGrid<VisitData> visitsGrid;
     IEnumerable<VisitData> visits;
@@ -72,8 +72,8 @@
         isVisitGridLoading = false;
     }
 
-    private void RedirectToAddCar()
+    private void RedirectToAddVisit()
     {
-        NavManager.NavigateTo("/addCar");
+        NavManager.NavigateTo("/addVisit");
     }
 }
