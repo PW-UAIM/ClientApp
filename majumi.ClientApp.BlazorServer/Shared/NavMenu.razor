@@ -1,47 +1,50 @@
-<div class="top-row pl-4 navbar navbar-dark">
-	<a class="navbar-brand" href="">MaJuMi Car Service</a>
-	<button class="navbar-toggler" @onclick="ToggleNavMenu">
-		<span class="navbar-toggler-icon"></span>
-	</button>
+<!-- Topbar Start -->
+<div class="container-fluid px-0 d-none d-lg-block">
+    <div class="row gx-0">
+        <div class="col-lg-4 text-center bg-secondary py-3">
+            <div class="d-inline-flex align-items-center justify-content-center">
+                <i class="bi bi-envelope fs-1 text-primary me-3"></i>
+                <div class="text-start">
+                    <h6 class="text-uppercase mb-1">Email Us</h6>
+                    <span>info@example.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 text-center bg-primary border-inner py-3">
+            <div class="d-inline-flex align-items-center justify-content-center">
+                <a href="" class="navbar-brand">
+                    <h1 class="m-0 text-uppercase text-white"><i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>CakeZone</h1>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-4 text-center bg-secondary py-3">
+            <div class="d-inline-flex align-items-center justify-content-center">
+                <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
+                <div class="text-start">
+                    <h6 class="text-uppercase mb-1">Call Us</h6>
+                    <span>+012 345 6789</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-	<ul class="nav flex-column">
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-				<span class="oi oi-home" aria-hidden="true"></span> Home
-			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="addVisit">
-				<span class="oi oi-briefcase" aria-hidden="true"></span> Add Visit
-			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="addCar">
-				<span class="oi oi-briefcase" aria-hidden="true"></span> Add Car
-			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="account">
-				<span class="oi oi-person" aria-hidden="true"></span> Account
-			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="login">
-				<span class="oi oi-key" aria-hidden="true"></span> Login
-			</NavLink>
-		</li>
-	</ul>
-</div>
-
-@code {
-	private bool collapseNavMenu = true;
-
-	private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-	private void ToggleNavMenu()
-	{
-		collapseNavMenu = !collapseNavMenu;
-	}
-}
+<!-- Topbar End -->
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
+    <a href="index.html" class="navbar-brand d-block d-lg-none">
+        <h1 class="m-0 text-uppercase text-white"><i class="fa fa-birthday-cake fs-1 text-primary me-3"></i>CakeZone</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto mx-lg-auto py-0">
+            <a href="" class="nav-item nav-link active">Home</a>
+            <a href="account" class="nav-item nav-link">Account</a>
+            <a href="addCar" class="nav-item nav-link">Add Car</a>
+            <a href="addVisit" class="nav-item nav-link">Add Visit</a>
+            <a href="login" class="nav-item nav-link">Login</a>
+        </div>
+    </div>
+</nav>
+<!-- Navbar End -->
