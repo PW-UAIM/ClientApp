@@ -19,7 +19,6 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text;
-using System.Runtime.CompilerServices;
 
 public class ServiceClient
 {
@@ -36,72 +35,74 @@ public class ServiceClient
 		this.servicePort = (ushort)servicePort;
 	}
 
-	public R CallWebServiceGet<R>(string webServiceUri)
+	public R CallWebService<R>(string webServiceUri)
 	{
-		Task<string> webServiceCall = this.CallWebService<string>(HttpMethod.Get, webServiceUri, null); // Najbrzydszy kod ever
+		Task<string> webServiceCall = CallWebService(webServiceUri);
 
 		webServiceCall.Wait();
 
 		string jsonResponseContent = webServiceCall.Result;
 
-		R result = this.ConvertFromJson<R>(jsonResponseContent);
+		R result = ConvertFromJson<R>(jsonResponseContent);
 
 		return result;
 	}
-	public R CallWebServicePost<R, T>(string webServiceUri, T bodyData)
+	public R CallWebService<R, T>(string webServiceUri, T bodyData)
 	{
-		Task<string> webServiceCall = this.CallWebService(HttpMethod.Post, webServiceUri, bodyData);
+		Task<string> webServiceCall = CallWebService(webServiceUri, bodyData);
 
 		webServiceCall.Wait();
 
 		string jsonResponseContent = webServiceCall.Result;
 
-		R result = this.ConvertFromJson<R>(jsonResponseContent);
+		R result = ConvertFromJson<R>(jsonResponseContent);
 
 		return result;
 	}
 
-	private async Task<string> CallWebService<T>(HttpMethod httpMethod, string callUri, T? bodyData)
+	private async Task<string> CallWebService(string callUri)
 	{
-		string httpUri = String.Format("http://{0}:{1}/{2}", this.serviceHost, this.servicePort, callUri);
+		string httpUri = String.Format("https://{0}:{1}/{2}", serviceHost, servicePort, callUri);
 
-		string httpResponseContent = "";
-		if(httpMethod == HttpMethod.Post)
-		{
-			string JSON = ConvertToJson(bodyData);
-			HttpContent httpContent = new StringContent(JSON, Encoding.UTF8, "application/json");
+		HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(httpUri);
+		httpResponseMessage.EnsureSuccessStatusCode();
 
-			HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(httpUri, httpContent);
-			httpResponseMessage.EnsureSuccessStatusCode();
-			httpResponseContent = await httpResponseMessage.Content.ReadAsStringAsync();
+		string httpResponseContent = await httpResponseMessage.Content.ReadAsStringAsync();
 
-		} else if (httpMethod == HttpMethod.Get)
-		{
-			HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, httpUri);
-			httpRequestMessage.Headers.Add("Accept", "application/json");
+		return httpResponseContent;
+	}
 
-			HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-			httpResponseMessage.EnsureSuccessStatusCode();
-			httpResponseContent = await httpResponseMessage.Content.ReadAsStringAsync();
-		}
+	private async Task<string> CallWebService<T>(string callUri, T bodyData)
+	{
+		string httpUri = String.Format("https://{0}:{1}/{2}", this.serviceHost, this.servicePort, callUri);
+
+		string JSON = ConvertToJson(bodyData);
+		HttpContent httpContent = new StringContent(JSON, Encoding.UTF8, "application/json");
+
+		HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(httpUri, httpContent);
+		httpResponseMessage.EnsureSuccessStatusCode();
+
+		string httpResponseContent = await httpResponseMessage.Content.ReadAsStringAsync();
 
 		return httpResponseContent;
 	}
 
 	private T ConvertFromJson<T>(string json)
 	{
-		JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
-
-		jsonSerializerOptions.PropertyNameCaseInsensitive = true;
+		JsonSerializerOptions jsonSerializerOptions = new()
+		{
+			PropertyNameCaseInsensitive = true
+		};
 
 		return JsonSerializer.Deserialize<T>(json, jsonSerializerOptions);
 	}
 
 	private string ConvertToJson<T>(T obj)
 	{
-		JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
-
-		jsonSerializerOptions.PropertyNameCaseInsensitive = true;
+		JsonSerializerOptions jsonSerializerOptions = new()
+		{
+			PropertyNameCaseInsensitive = true
+		};
 
 		return JsonSerializer.Serialize(obj, jsonSerializerOptions);
 	}

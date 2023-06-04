@@ -16,8 +16,6 @@ namespace majumi.ClientApp.Model;
 using majumi.CarService.ClientsAppService.Rest.Model.Model;
 using System.Collections.Generic;
 using System;
-using System.Net.Http;
-using System.Runtime.ConstrainedExecution;
 
 public class NetworkClient : IClient
 {
@@ -32,7 +30,7 @@ public class NetworkClient : IClient
 	{
 		string callUri = String.Format("addCar");
 
-		bool result = this.serviceClient.CallWebServicePost<bool, CarData>(callUri, car);
+		bool result = this.serviceClient.CallWebService<bool, CarData>(callUri, car);
 
 		return result;
 	}
@@ -40,7 +38,7 @@ public class NetworkClient : IClient
 	{
 		string callUri = String.Format("addVisit");
 
-		bool result = this.serviceClient.CallWebServicePost<bool, VisitData>(callUri, visit);
+		bool result = this.serviceClient.CallWebService<bool, VisitData>(callUri, visit);
 
 		return result;
 	}
@@ -48,7 +46,7 @@ public class NetworkClient : IClient
 	{
 		string callUri = String.Format("login/{0}", clientID);
 
-		ClientLoginStatus loginStatus = this.serviceClient.CallWebServiceGet<ClientLoginStatus>(callUri);
+		ClientLoginStatus loginStatus = this.serviceClient.CallWebService<ClientLoginStatus>(callUri);
 
 		return loginStatus;
 	}
@@ -56,7 +54,7 @@ public class NetworkClient : IClient
 	{
 		string callUri = String.Format("getAllCarsByClient/{0}", clientID);
 
-		List<CarData> cars = this.serviceClient.CallWebServiceGet<List<CarData>>(callUri);
+		List<CarData> cars = this.serviceClient.CallWebService<List<CarData>>(callUri);
 
 		return cars;
 	}
@@ -64,7 +62,7 @@ public class NetworkClient : IClient
 	{
 		string callUri = String.Format("getAllVisitsByClient/{0}", clientID);
 
-		List<VisitData> visits = this.serviceClient.CallWebServiceGet<List<VisitData>>(callUri);
+		List<VisitData> visits = this.serviceClient.CallWebService<List<VisitData>>(callUri);
 
 		return visits;
 	}
@@ -72,7 +70,7 @@ public class NetworkClient : IClient
 	{
 		string callUri = String.Format("getCar/{0}", clientID);
 
-		CarData car = this.serviceClient.CallWebServiceGet<CarData>(callUri);
+		CarData car = this.serviceClient.CallWebService<CarData>(callUri);
 
 		return car;
 	}
@@ -80,7 +78,7 @@ public class NetworkClient : IClient
 	{
 		string callUri = String.Format("getVisit/{0}", clientID);
 
-		VisitData visit = this.serviceClient.CallWebServiceGet<VisitData>(callUri);
+		VisitData visit = this.serviceClient.CallWebService<VisitData>(callUri);
 
 		return visit;
 	}
