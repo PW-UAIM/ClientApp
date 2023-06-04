@@ -7,8 +7,8 @@ services:
   controlsvc:
     image: majumi/clientapp:application
     ports:
-      - published: 5010
-        target: 80
+      - published: 5100
+        target: 5100
     networks:
       - int_network
     deploy:
