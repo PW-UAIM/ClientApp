@@ -18,6 +18,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text;
 
 public class ServiceClient
 {
@@ -34,38 +35,36 @@ public class ServiceClient
 		this.servicePort = (ushort)servicePort;
 	}
 
-	public R CallWebService<R>(HttpMethod httpMethod, string webServiceUri)
+	public R CallWebService<R>(string webServiceUri)
 	{
-		Task<string> webServiceCall = this.CallWebService(httpMethod, webServiceUri);
+		Task<string> webServiceCall = CallWebService(webServiceUri);
 
 		webServiceCall.Wait();
 
 		string jsonResponseContent = webServiceCall.Result;
 
-		R result = this.ConvertJson<R>(jsonResponseContent);
+		R result = ConvertFromJson<R>(jsonResponseContent);
+
+		return result;
+	}
+	public R CallWebService<R, T>(string webServiceUri, T bodyData)
+	{
+		Task<string> webServiceCall = CallWebService(webServiceUri, bodyData);
+
+		webServiceCall.Wait();
+
+		string jsonResponseContent = webServiceCall.Result;
+
+		R result = ConvertFromJson<R>(jsonResponseContent);
 
 		return result;
 	}
 
-	public async Task<R> CallWebServiceAsync<R>(HttpMethod httpMethod, string webServiceUri)
+	private async Task<string> CallWebService(string callUri)
 	{
-		string jsonResponseContent = await this.CallWebService(httpMethod, webServiceUri);
+		string httpUri = String.Format("https://{0}:{1}/{2}", serviceHost, servicePort, callUri);
 
-		R result = this.ConvertJson<R>(jsonResponseContent);
-
-		return result;
-	}
-
-	public async Task<string> CallWebService(HttpMethod httpMethod, string callUri)
-	{
-		string httpUri = String.Format("http://{0}:{1}/{2}", this.serviceHost, this.servicePort, callUri);
-
-		HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, httpUri);
-
-		httpRequestMessage.Headers.Add("Accept", "application/json");
-
-		HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-
+		HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(httpUri);
 		httpResponseMessage.EnsureSuccessStatusCode();
 
 		string httpResponseContent = await httpResponseMessage.Content.ReadAsStringAsync();
@@ -73,12 +72,38 @@ public class ServiceClient
 		return httpResponseContent;
 	}
 
-	private T ConvertJson<T>(string json)
+	private async Task<string> CallWebService<T>(string callUri, T bodyData)
 	{
-		JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
+		string httpUri = String.Format("https://{0}:{1}/{2}", this.serviceHost, this.servicePort, callUri);
 
-		jsonSerializerOptions.PropertyNameCaseInsensitive = true;
+		string JSON = ConvertToJson(bodyData);
+		HttpContent httpContent = new StringContent(JSON, Encoding.UTF8, "application/json");
+
+		HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(httpUri, httpContent);
+		httpResponseMessage.EnsureSuccessStatusCode();
+
+		string httpResponseContent = await httpResponseMessage.Content.ReadAsStringAsync();
+
+		return httpResponseContent;
+	}
+
+	private T ConvertFromJson<T>(string json)
+	{
+		JsonSerializerOptions jsonSerializerOptions = new()
+		{
+			PropertyNameCaseInsensitive = true
+		};
 
 		return JsonSerializer.Deserialize<T>(json, jsonSerializerOptions);
+	}
+
+	private string ConvertToJson<T>(T obj)
+	{
+		JsonSerializerOptions jsonSerializerOptions = new()
+		{
+			PropertyNameCaseInsensitive = true
+		};
+
+		return JsonSerializer.Serialize(obj, jsonSerializerOptions);
 	}
 }
