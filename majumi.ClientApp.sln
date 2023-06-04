@@ -18,16 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementy rozwiązania", "El
 		.gitlab-ci.yml = .gitlab-ci.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{50F73811-DDA8-486F-85F3-2775A641D671}"
-	ProjectSection(SolutionItems) = preProject
-		Docker\BuildPushImage.bat = Docker\BuildPushImage.bat
-		Docker\BuildPushImage_Dev.bat = Docker\BuildPushImage_Dev.bat
-		Docker\BuildPushImage_Linux.bat = Docker\BuildPushImage_Linux.bat
-		Docker\RunImage.bat = Docker\RunImage.bat
-		Docker\RunImage_Dev.bat = Docker\RunImage_Dev.bat
-		Docker\RunImage_Linux.bat = Docker\RunImage_Linux.bat
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DockerCompose", "DockerCompose", "{6F3AD32B-F302-44AD-BECD-F576525AEF4B}"
 	ProjectSection(SolutionItems) = preProject
 		DockerCompose\docker-compose.yaml = DockerCompose\docker-compose.yaml
@@ -49,6 +39,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", 
 		Kubernetes\Kubernetes_StartDashboardProxy.bat = Kubernetes\Kubernetes_StartDashboardProxy.bat
 		Kubernetes\Kubernetes_StartSystem.bat = Kubernetes\Kubernetes_StartSystem.bat
 		Kubernetes\Kubernetes_StopSystem.bat = Kubernetes\Kubernetes_StopSystem.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{7BDE72B1-897C-40EF-9B2C-8CD1707D5F5E}"
+	ProjectSection(SolutionItems) = preProject
+		Docker\BuildPushImage.bat = Docker\BuildPushImage.bat
+		Docker\RunImage.bat = Docker\RunImage.bat
 	EndProjectSection
 EndProject
 Global

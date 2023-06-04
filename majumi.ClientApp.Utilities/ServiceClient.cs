@@ -18,6 +18,8 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text;
+using System.Runtime.CompilerServices;
 
 public class ServiceClient
 {
@@ -34,51 +36,73 @@ public class ServiceClient
 		this.servicePort = (ushort)servicePort;
 	}
 
-	public R CallWebService<R>(HttpMethod httpMethod, string webServiceUri)
+	public R CallWebServiceGet<R>(string webServiceUri)
 	{
-		Task<string> webServiceCall = this.CallWebService(httpMethod, webServiceUri);
+		Task<string> webServiceCall = this.CallWebService<string>(HttpMethod.Get, webServiceUri, null); // Najbrzydszy kod ever
 
 		webServiceCall.Wait();
 
 		string jsonResponseContent = webServiceCall.Result;
 
-		R result = this.ConvertJson<R>(jsonResponseContent);
+		R result = this.ConvertFromJson<R>(jsonResponseContent);
 
 		return result;
 	}
-
-	public async Task<R> CallWebServiceAsync<R>(HttpMethod httpMethod, string webServiceUri)
+	public R CallWebServicePost<R, T>(string webServiceUri, T bodyData)
 	{
-		string jsonResponseContent = await this.CallWebService(httpMethod, webServiceUri);
+		Task<string> webServiceCall = this.CallWebService(HttpMethod.Post, webServiceUri, bodyData);
 
-		R result = this.ConvertJson<R>(jsonResponseContent);
+		webServiceCall.Wait();
+
+		string jsonResponseContent = webServiceCall.Result;
+
+		R result = this.ConvertFromJson<R>(jsonResponseContent);
 
 		return result;
 	}
 
-	public async Task<string> CallWebService(HttpMethod httpMethod, string callUri)
+	private async Task<string> CallWebService<T>(HttpMethod httpMethod, string callUri, T? bodyData)
 	{
 		string httpUri = String.Format("http://{0}:{1}/{2}", this.serviceHost, this.servicePort, callUri);
 
-		HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, httpUri);
+		string httpResponseContent = "";
+		if(httpMethod == HttpMethod.Post)
+		{
+			string JSON = ConvertToJson(bodyData);
+			HttpContent httpContent = new StringContent(JSON, Encoding.UTF8, "application/json");
 
-		httpRequestMessage.Headers.Add("Accept", "application/json");
+			HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(httpUri, httpContent);
+			httpResponseMessage.EnsureSuccessStatusCode();
+			httpResponseContent = await httpResponseMessage.Content.ReadAsStringAsync();
 
-		HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+		} else if (httpMethod == HttpMethod.Get)
+		{
+			HttpRequestMessage httpRequestMessage = new HttpRequestMessage(httpMethod, httpUri);
+			httpRequestMessage.Headers.Add("Accept", "application/json");
 
-		httpResponseMessage.EnsureSuccessStatusCode();
-
-		string httpResponseContent = await httpResponseMessage.Content.ReadAsStringAsync();
+			HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+			httpResponseMessage.EnsureSuccessStatusCode();
+			httpResponseContent = await httpResponseMessage.Content.ReadAsStringAsync();
+		}
 
 		return httpResponseContent;
 	}
 
-	private T ConvertJson<T>(string json)
+	private T ConvertFromJson<T>(string json)
 	{
 		JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
 
 		jsonSerializerOptions.PropertyNameCaseInsensitive = true;
 
 		return JsonSerializer.Deserialize<T>(json, jsonSerializerOptions);
+	}
+
+	private string ConvertToJson<T>(T obj)
+	{
+		JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
+
+		jsonSerializerOptions.PropertyNameCaseInsensitive = true;
+
+		return JsonSerializer.Serialize(obj, jsonSerializerOptions);
 	}
 }
