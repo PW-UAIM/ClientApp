@@ -53,6 +53,9 @@ public class Startup
 			app.UseExceptionHandler("/Error");
 			app.UseHsts();
 		}
+
+		app.UseStaticFiles();
+
 		/* AT
 		app.UseHttpsRedirection( );
 		*/
