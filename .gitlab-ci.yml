@@ -1,39 +1,65 @@
 stages:
     - build
     - test
-    - pack
+    - docker
+ #   - deploy
 
-build:
+build_debug:
     stage: build
     before_script:
       - cd majumi.ClientApp.BlazorServer
     script:
-      - dotnet restore
       - dotnet build -c Debug
+    tags:
+      - dotnet
+
+build_release:
+    stage: build
+    before_script:
+      - cd majumi.ClientApp.BlazorServer
+    script:
       - dotnet build -c Release
     tags:
-      - all, integration
+      - dotnet  
 
-test:
+unit_test:
     stage: test
-    needs: [build]
+    needs: ["build"]
     before_script:
       - cd majumi.ClientApp.Tests
     script:
-      - dotnet restore
-      - dotnet build -c Debug
-      - dotnet build -c Release
-      - dotnet test
+      - dotnet test --filter ClassName="majumi.ClientApp.Tests.UnitTests"
     tags:
-      - all, integration
+      - dotnet
 
 
-pack:
-    stage: pack
-    needs: [test]
+build_image:
+    stage: docker
+    needs: ["test"]
     before_script:
       - cd Docker
     script:
-      - BuildPushImage.bat
+      - BuildImage.bat
     tags:
-      - all, integration
+      - docker
+
+push_image:
+    stage: docker
+    needs: ["build_image"]
+    before_script:
+      - cd Docker
+    script:
+      - PushImage.bat
+    tags:
+      - docker
+
+#production:
+#    stage: deploy
+#    needs: ["push_image"]
+#    before_script:
+#      - cd Kubernetes
+#    script:
+#      - Kubernetes_StopSystem.bat
+#      - Kubernetes_StartSystem.bat
+#    tags:
+#      - kubernetes

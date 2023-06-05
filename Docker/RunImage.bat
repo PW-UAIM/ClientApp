@@ -1,12 +1,6 @@
 docker login -u majumi -p uaimrzadzi
 
-docker ps -a
-
 docker stop clientapp
-
-docker ps 
-
-docker images
 
 docker pull majumi/clientapp:application
 

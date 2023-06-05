@@ -21,7 +21,7 @@ using majumi.CarService.ClientsAppService.Rest.Model.Model;
 using System;
 
 [TestClass]
-public class ModelTests
+public class UnitTests
 {
 	IModel model;
 	int clientID;

@@ -4,7 +4,6 @@
 #For more information, please see https://aka.ms/containercompat
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-LABEL stage=zsutpwpatterns-webapplication_build
 WORKDIR /src
 COPY . .
 WORKDIR "/src/majumi.ClientApp.BlazorServer"

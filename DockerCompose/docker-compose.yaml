@@ -1,14 +1,50 @@
-version: "3.9"
+version: "0.1"
 
 networks:
   int_network:
 
 services:
-  controlsvc:
+  clientapp:
     image: majumi/clientapp:application
     ports:
       - published: 5100
         target: 5100
+    networks:
+      - int_network
+    deploy:
+      replicas: 1
+  clientappservice:
+    image: majumi/clientappservice:appservice
+    ports:
+      - published: 5010
+        target: 5010
+    networks:
+      - int_network
+    deploy:
+      replicas: 1
+  cardataservice:
+    image: majumi/cardataservice:dataservice
+    ports:
+      - published: 5001
+        target: 5001
+    networks:
+      - int_network
+    deploy:
+      replicas: 1
+  clientdataservice:
+    image: majumi/clientdataservice:dataservice
+    ports:
+      - published: 5002
+        target: 5002
+    networks:
+      - int_network
+    deploy:
+      replicas: 1
+  visitdataservice:
+    image: majumi/visitdataservice:dataservice
+    ports:
+      - published: 5004
+        target: 5004
     networks:
       - int_network
     deploy:

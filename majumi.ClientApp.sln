@@ -43,7 +43,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{7BDE72B1-897C-40EF-9B2C-8CD1707D5F5E}"
 	ProjectSection(SolutionItems) = preProject
+		Docker\BuildImage.bat = Docker\BuildImage.bat
 		Docker\BuildPushImage.bat = Docker\BuildPushImage.bat
+		Docker\PushImage.bat = Docker\PushImage.bat
 		Docker\RunImage.bat = Docker\RunImage.bat
 	EndProjectSection
 EndProject
