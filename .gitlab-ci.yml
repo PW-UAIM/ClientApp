@@ -24,7 +24,7 @@ build_release:
 
 unit_test:
     stage: test
-    needs: ["build"]
+    needs: [build_release, build_debug]
     before_script:
       - cd majumi.ClientApp.Tests
     script:
@@ -35,7 +35,7 @@ unit_test:
 
 build_image:
     stage: docker
-    needs: ["test"]
+    needs: [unit_test]
     before_script:
       - cd Docker
     script:
@@ -45,7 +45,7 @@ build_image:
 
 push_image:
     stage: docker
-    needs: ["build_image"]
+    needs: [build_image]
     before_script:
       - cd Docker
     script:
@@ -55,7 +55,7 @@ push_image:
 
 #production:
 #    stage: deploy
-#    needs: ["push_image"]
+#    needs: [push_image]
 #    before_script:
 #      - cd Kubernetes
 #    script:
