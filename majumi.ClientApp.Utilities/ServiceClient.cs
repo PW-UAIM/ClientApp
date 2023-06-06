@@ -62,7 +62,7 @@ public class ServiceClient
 
 	private async Task<string> CallWebService(string callUri)
 	{
-		string httpUri = String.Format("https://{0}:{1}/{2}", serviceHost, servicePort, callUri);
+		string httpUri = String.Format("http://{0}:{1}/{2}", serviceHost, servicePort, callUri);
 
 		HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(httpUri);
 		httpResponseMessage.EnsureSuccessStatusCode();
@@ -74,7 +74,7 @@ public class ServiceClient
 
 	private async Task<string> CallWebService<T>(string callUri, T bodyData)
 	{
-		string httpUri = String.Format("https://{0}:{1}/{2}", this.serviceHost, this.servicePort, callUri);
+		string httpUri = String.Format("http://{0}:{1}/{2}", this.serviceHost, this.servicePort, callUri);
 
 		string JSON = ConvertToJson(bodyData);
 		HttpContent httpContent = new StringContent(JSON, Encoding.UTF8, "application/json");

@@ -1,18 +1,30 @@
-version: "0.1"
+version: "0.2"
 
 networks:
   int_network:
 
 services:
-  clientapp:
-    image: majumi/clientapp:application
+  carsdataservice:
+    image: majumi/carsdataservice:dataservice
     ports:
-      - published: 5100
-        target: 5100
+      - published: 5000
+        target: 5000
     networks:
       - int_network
-    deploy:
-      replicas: 1
+  clientsdataservice:
+    image: majumi/clientsdataservice:dataservice
+    ports:
+      - published: 5001
+        target: 5001
+    networks:
+      - int_network
+  visitsdataservice:
+    image: majumi/visitsdataservice:dataservice
+    ports:
+      - published: 5003
+        target: 5003
+    networks:
+      - int_network
   clientappservice:
     image: majumi/clientappservice:appservice
     ports:
@@ -20,32 +32,10 @@ services:
         target: 5010
     networks:
       - int_network
-    deploy:
-      replicas: 1
-  cardataservice:
-    image: majumi/cardataservice:dataservice
+  clientapp:
+    image: majumi/clientapp:application
     ports:
-      - published: 5001
-        target: 5001
+      - published: 5100
+        target: 5100
     networks:
       - int_network
-    deploy:
-      replicas: 1
-  clientdataservice:
-    image: majumi/clientdataservice:dataservice
-    ports:
-      - published: 5002
-        target: 5002
-    networks:
-      - int_network
-    deploy:
-      replicas: 1
-  visitdataservice:
-    image: majumi/visitdataservice:dataservice
-    ports:
-      - published: 5004
-        target: 5004
-    networks:
-      - int_network
-    deploy:
-      replicas: 1

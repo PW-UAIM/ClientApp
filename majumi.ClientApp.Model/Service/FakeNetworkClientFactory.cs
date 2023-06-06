@@ -17,6 +17,14 @@ public static class FakeNetworkClientFactory
 {
 	public static IClient GetNetworkClient()
 	{
-		return new FakeNetworkClient();
+
+		if (System.Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true")
+		{
+			return new NetworkClient("clientappservice", 5010);
+		}
+		else
+		{
+			return new FakeNetworkClient();
+		}
 	}
 }
