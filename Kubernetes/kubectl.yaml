@@ -1,23 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapplication
+  name: clientapp-deploy
   labels:
-    app: webapplication
-    tier: user-application
+    app: clientapp-deploy
+    tier: application
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: webapplication
+      app: clientapp-deploy
   template:
     metadata:
       labels:
-        app: webapplication
-        tier: user-application
+        app: clientapp-deploy
     spec:
       containers:
-      - name: webapplication
+      - name: clientapp
         image: majumi/clientapp:application
         imagePullPolicy: Always
         ports:
@@ -25,17 +24,172 @@ spec:
       imagePullSecrets:
       - name: docker-secret
 ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clientappservice-deploy
+  labels:
+    app: clientappservice-deploy
+    tier: appservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clientappservice-deploy
+  template:
+    metadata:
+      labels:
+        app: clientappservice-deploy
+    spec:
+      containers:
+      - name: clientappservice
+        image: majumi/clientappservice:appservice
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5010
+      imagePullSecrets:
+      - name: docker-secret
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carsdataservice-deploy
+  labels:
+    app: carsdataservice-deploy
+    tier: dataservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: carsdataservice-deploy
+  template:
+    metadata:
+      labels:
+        app: carsdataservice-deploy
+    spec:
+      containers:
+      - name: carsdataservice
+        image: majumi/carsdataservice:dataservice
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+      imagePullSecrets:
+      - name: docker-secret
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clientsdataservice-deploy
+  labels:
+    app: clientsdataservice-deploy
+    tier: dataservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clientsdataservice-deploy
+  template:
+    metadata:
+      labels:
+        app: clientsdataservice-deploy
+    spec:
+      containers:
+      - name: clientsdataservice
+        image: majumi/clientsdataservice:dataservice
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5001
+      imagePullSecrets:
+      - name: docker-secret
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: visitsdataservice-deploy
+  labels:
+    app: visitsdataservice-deploy
+    tier: dataservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: visitsdataservice-deploy
+  template:
+    metadata:
+      labels:
+        app: visitsdataservice-deploy
+    spec:
+      containers:
+      - name: visitsdataservice
+        image: majumi/visitsdataservice:dataservice
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5003
+      imagePullSecrets:
+      - name: docker-secret
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapplication
+  name: clientapp
   labels:
-    app: webapplication
-    tier: user-application
+    app: clientapp
 spec:
   selector:
-    app: webapplication
+    app: clientapp-deploy
   type: NodePort
   ports:
   - port: 5100
-    nodePort: 30080
+    nodePort: 30100
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clientappservice
+  labels:
+    app: clientappservice
+spec:
+  selector:
+    app: clientappservice-deploy
+  ports:
+  - port: 5010
+    targetPort: 5010
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: carsdataservice
+  labels:
+    app: carsdataservice
+spec:
+  selector:
+    app: carsdataservice-deploy
+  ports:
+  - port: 5000
+    targetPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clientsdataservice
+  labels:
+    app: clientsdataservice
+spec:
+  selector:
+    app: clientsdataservice-deploy
+  ports:
+  - port: 5001
+    targetPort: 5001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: visitsdataservice
+  labels:
+    app: visitsdataservice
+spec:
+  selector:
+    app: visitsdataservice-deploy
+  ports:
+  - port: 5003
+    targetPort: 5003
