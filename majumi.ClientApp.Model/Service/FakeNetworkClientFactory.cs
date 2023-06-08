@@ -11,14 +11,19 @@
 //
 //===============================================================================
 
+using System;
+
 namespace majumi.ClientApp.Model;
 
 public static class FakeNetworkClientFactory
 {
 	public static IClient GetNetworkClient()
 	{
-
-		if (System.Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true")
+		if(!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("CLIENTAPPSERVICE_SERVICE_HOST"))) 
+		{
+			return new NetworkClient(Environment.GetEnvironmentVariable("CLIENTAPPSERVICE_SERVICE_HOST"), int.Parse(Environment.GetEnvironmentVariable("CLIENTAPPSERVICE_SERVICE_PORT")));
+		}	
+		else if (Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true")
 		{
 			return new NetworkClient("clientappservice", 5010);
 		}
