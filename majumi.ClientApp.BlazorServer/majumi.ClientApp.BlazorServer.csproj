@@ -17,14 +17,13 @@
 
   <ItemGroup>
     <Folder Include="View\Converters\" />
+    <Folder Include="wwwroot\carservice2\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\carservice\about.html" />
     <None Include="wwwroot\carservice\cake-shop-website-template.jpg" />
     <None Include="wwwroot\carservice\contact.html" />
-    <None Include="wwwroot\carservice\css\bootstrap.min.css" />
-    <None Include="wwwroot\carservice\css\style.css" />
     <None Include="wwwroot\carservice\img\about.jpg" />
     <None Include="wwwroot\carservice\img\bg.jpg" />
     <None Include="wwwroot\carservice\img\cake-1.jpg" />
@@ -146,7 +145,6 @@
     <None Include="wwwroot\carservice\service.html" />
     <None Include="wwwroot\carservice\team.html" />
     <None Include="wwwroot\carservice\testimonial.html" />
-    <None Include="wwwroot\index.html" />
   </ItemGroup>
 
   <ItemGroup>
