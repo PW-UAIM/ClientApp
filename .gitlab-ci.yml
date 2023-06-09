@@ -59,6 +59,6 @@ production:
     before_script:
       - cd Kubernetes
     script:
-      - kubectl rollout restart deployment/clientapp-deploy
+      - ./Kubernetes_RollOutSystem.bat
     tags:
       - kubernetes
