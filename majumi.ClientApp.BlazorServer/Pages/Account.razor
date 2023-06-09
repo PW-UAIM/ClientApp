@@ -95,11 +95,11 @@
 </div>
 
 <div class="col-lg-10 col-12 text-center mx-auto">
-    <h2 class="mb-1">Moje samochody</h2>
+    <h2 class="mb-5">Moje samochody</h2>
 </div>
-<div class="container-fluid py-5">
+<div class="container-fluid">
     <div class="container">
-        <RadzenDataGrid style="height: 335px" @ref="carGrid" class=" ms-lg-auto shadow-lg img-fluid site-footer-bottom" IsLoading=@isCarGridLoading Count="@carGridCount" Data="@cars" LoadData="@LoadCarData" TItem="CarData">
+        <RadzenDataGrid style="height: 335px; margin: 0; padding:0;" @ref="carGrid" class=" ms-lg-auto shadow-lg img-fluid site-footer-bottom" IsLoading=@isCarGridLoading Count="@carGridCount" Data="@cars" LoadData="@LoadCarData" TItem="CarData">
             <Columns>
                 <RadzenDataGridColumn TItem="CarData" Property="CarID" Title="CarID" />
                 <RadzenDataGridColumn TItem="CarData" Property="Make" Title="Make" />
@@ -122,9 +122,9 @@
 <div class="col-lg-10 col-12 text-center mx-auto">
     <h2 class="mb-5">Moje przeglądy</h2>
 </div>
-<div class="container-fluid py-5">
-    <div class="container">
-        <RadzenDataGrid style="height: 335px" @ref="visitsGrid" class=" ms-lg-auto shadow-lg img-fluid site-footer-bottom" IsLoading=@isVisitGridLoading Count="@visitGridCount" Data="@visits" LoadData="@LoadVisitData" TItem="VisitData">
+<div class="container-fluid">
+    <div class="container"  style="margin-bottom: 3em;">
+        <RadzenDataGrid style="height: 335px; margin: 0; padding:0;" @ref="visitsGrid" class=" ms-lg-auto shadow-lg img-fluid site-footer-bottom" IsLoading=@isVisitGridLoading Count="@visitGridCount" Data="@visits" LoadData="@LoadVisitData" TItem="VisitData">
             <Columns>
                 <RadzenDataGridColumn TItem="VisitData" Property="CarID" Title="CarID" />
                 <RadzenDataGridColumn TItem="VisitData" Property="ClientID" Title="ClientID" />
@@ -170,6 +170,7 @@
     private async Task RedirectToAddCar()
     {
         await DialogService.OpenAsync<AddCar>("Dodaj auto");
+        await carGrid.Reload();
     }
 }
 
@@ -193,6 +194,7 @@
     private async Task RedirectToAddVisit()
     {
         await DialogService.OpenAsync<AddVisit>("Zapisz się na przegląd");
+        await visitsGrid.Reload();
     }
 
 }
