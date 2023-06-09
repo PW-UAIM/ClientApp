@@ -4,10 +4,8 @@
 @inject IModel model
 @inject NavigationManager NavManager
 @inject DialogService DialogService
+
 <RadzenDialog />
-
-
-
 <div class="col-lg-10 col-12 text-center mx-auto">
     <p>
         <br>
@@ -101,18 +99,19 @@
     <div class="container">
         <RadzenDataGrid style="height: 335px; margin: 0; padding:0;" @ref="carGrid" class=" ms-lg-auto shadow-lg img-fluid site-footer-bottom" IsLoading=@isCarGridLoading Count="@carGridCount" Data="@cars" LoadData="@LoadCarData" TItem="CarData">
             <Columns>
-                <RadzenDataGridColumn TItem="CarData" Property="CarID" Title="CarID" />
-                <RadzenDataGridColumn TItem="CarData" Property="Make" Title="Make" />
+                <RadzenDataGridColumn TItem="CarData" Property="CarID" Title="AutoID" />
+                <RadzenDataGridColumn TItem="CarData" Property="Make" Title="Marka" />
                 <RadzenDataGridColumn TItem="CarData" Property="Model" Title="Model" />
-                <RadzenDataGridColumn TItem="CarData" Property="EngineSize" Title="EngineSize" />
-                <RadzenDataGridColumn TItem="CarData" Property="LicensePlate" Title="LicensePlate" />
-                <RadzenDataGridColumn TItem="CarData" Property="Mileage" Title="Mileage" />
+                <RadzenDataGridColumn TItem="CarData" Property="Year" Title="Rok" />
+                <RadzenDataGridColumn TItem="CarData" Property="EngineSize" Title="Silnik" />
+                <RadzenDataGridColumn TItem="CarData" Property="LicensePlate" Title="Tablica rejestracyjna" />
+                <RadzenDataGridColumn TItem="CarData" Property="Mileage" Title="Przebieg" />
                 <RadzenDataGridColumn TItem="CarData" Property="VIN" Title="VIN" />
-                <RadzenDataGridColumn TItem="CarData" Property="Year" Title="Year" />
+
             </Columns>
         </RadzenDataGrid>
         <p></p> 
-         <RadzenButton Text="Dodaj auto" Click=RedirectToAddCar type="submit" class="nav-link custom-btn custom-border-btn btn" />
+         <RadzenButton Text="Dodaj auto" Click=OpenAddCarDialog type="submit" class="nav-link custom-btn custom-border-btn btn" />
  
         
     </div>
@@ -126,13 +125,13 @@
     <div class="container"  style="margin-bottom: 3em;">
         <RadzenDataGrid style="height: 335px; margin: 0; padding:0;" @ref="visitsGrid" class=" ms-lg-auto shadow-lg img-fluid site-footer-bottom" IsLoading=@isVisitGridLoading Count="@visitGridCount" Data="@visits" LoadData="@LoadVisitData" TItem="VisitData">
             <Columns>
-                <RadzenDataGridColumn TItem="VisitData" Property="CarID" Title="CarID" />
-                <RadzenDataGridColumn TItem="VisitData" Property="ClientID" Title="ClientID" />
+                <RadzenDataGridColumn TItem="VisitData" Property="CarID" Title="AutoID" />
+                <RadzenDataGridColumn TItem="VisitData" Property="ClientID" Title="KlientID" />
                 <RadzenDataGridColumn TItem="VisitData" Property="Notes" Title="Notes" />
-                <RadzenDataGridColumn TItem="VisitData" Property="ServiceCost" Title="ServiceCost" />
-                <RadzenDataGridColumn TItem="VisitData" Property="ServiceDate" Title="ServiceDate" />
-                <RadzenDataGridColumn TItem="VisitData" Property="ServiceStatus" Title="ServiceStatus" />
-                <RadzenDataGridColumn TItem="VisitData" Property="ServiceType" Title="ServiceType" />
+                <RadzenDataGridColumn TItem="VisitData" Property="ServiceCost" Title="Koszt serwisu" />
+                <RadzenDataGridColumn TItem="VisitData" Property="ServiceDate" Title="Data serwisu" />
+                <RadzenDataGridColumn TItem="VisitData" Property="ServiceStatus" Title="Status" />
+                <RadzenDataGridColumn TItem="VisitData" Property="ServiceType" Title="Rodzaj usługi" />
             </Columns>
         </RadzenDataGrid>
         <p> </p>
@@ -150,7 +149,6 @@
 
     protected override void OnInitialized()
     {
-        //Check if client is logged in
         if (model.ClientID == 0 || model.LoginConfirmation == false)
         {
             NavManager.NavigateTo("/login");
@@ -164,10 +162,11 @@
         await controller.LoadCarsAsync();
         cars = model.CarList;
         carGridCount = cars.Count();
+
         isCarGridLoading = false;
     }
 
-    private async Task RedirectToAddCar()
+    private async Task OpenAddCarDialog()
     {
         await DialogService.OpenAsync<AddCar>("Dodaj auto");
         await carGrid.Reload();
