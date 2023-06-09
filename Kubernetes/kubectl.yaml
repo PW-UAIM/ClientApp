@@ -27,6 +27,32 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: mechanicapp-deploy
+  labels:
+    app: mechanicapp-deploy
+    tier: application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mechanicapp-deploy
+  template:
+    metadata:
+      labels:
+        app: mechanicapp-deploy
+    spec:
+      containers:
+      - name: mechanicapp
+        image: majumi/mechanicapp:application
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5200
+      imagePullSecrets:
+      - name: docker-secret
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: clientappservice-deploy
   labels:
     app: clientappservice-deploy
@@ -47,6 +73,32 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5010
+      imagePullSecrets:
+      - name: docker-secret
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mechanicappservice-deploy
+  labels:
+    app: mechanicappservice-deploy
+    tier: appservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mechanicappservice-deploy
+  template:
+    metadata:
+      labels:
+        app: mechanicappservice-deploy
+    spec:
+      containers:
+      - name: mechanicappservice
+        image: majumi/mechanicappservice:appservice
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5011
       imagePullSecrets:
       - name: docker-secret
 ---
@@ -105,6 +157,32 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: mechanicsdataservice-deploy
+  labels:
+    app: mechanicsdataservice-deploy
+    tier: dataservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mechanicsdataservice-deploy
+  template:
+    metadata:
+      labels:
+        app: mechanicsdataservice-deploy
+    spec:
+      containers:
+      - name: mechanicsdataservice
+        image: majumi/mechanicsdataservice:dataservice
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5002
+      imagePullSecrets:
+      - name: docker-secret
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: visitsdataservice-deploy
   labels:
     app: visitsdataservice-deploy
@@ -140,7 +218,21 @@ spec:
   type: NodePort
   ports:
   - port: 5100
-    nodePort: 30100
+    nodePort: 30101
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mechanicapp
+  labels:
+    app: mechanicapp
+spec:
+  selector:
+    app: mechanicapp-deploy
+  type: NodePort
+  ports:
+  - port: 5200
+    nodePort: 30201
 ---
 apiVersion: v1
 kind: Service
@@ -154,6 +246,19 @@ spec:
   ports:
   - port: 5010
     targetPort: 5010
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mechanicappservice
+  labels:
+    app: mechanicappservice
+spec:
+  selector:
+    app: mechanicappservice-deploy
+  ports:
+  - port: 5011
+    targetPort: 5011
 ---
 apiVersion: v1
 kind: Service
@@ -180,6 +285,19 @@ spec:
   ports:
   - port: 5001
     targetPort: 5001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mechanicsdataservice
+  labels:
+    app: mechanicsdataservice
+spec:
+  selector:
+    app: mechanicsdataservice-deploy
+  ports:
+  - port: 5002
+    targetPort: 5002
 ---
 apiVersion: v1
 kind: Service
