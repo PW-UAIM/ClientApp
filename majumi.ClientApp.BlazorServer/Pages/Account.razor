@@ -8,7 +8,7 @@
     <p>
         <br>
     </p>
-    <h2 class="mb-5">Moje konto</h2>
+    <h2 class="mb-1">Moje konto</h2>
 </div>
 
 
@@ -91,11 +91,11 @@
 </div>
 
 <div class="col-lg-10 col-12 text-center mx-auto">
-    <h2 class="mb-5">Moje samochody</h2>
+    <h2 class="mb-1">Moje samochody</h2>
 </div>
 <div class="container-fluid py-5">
     <div class="container">
-        <RadzenDataGrid style="height: 335px" @ref="carGrid" IsLoading=@isCarGridLoading Count="@carGridCount" Data="@cars" LoadData="@LoadCarData" TItem="CarData">
+        <RadzenDataGrid style="height: 335px" @ref="carGrid" class=" ms-lg-auto shadow-lg img-fluid site-footer-bottom" IsLoading=@isCarGridLoading Count="@carGridCount" Data="@cars" LoadData="@LoadCarData" TItem="CarData">
             <Columns>
                 <RadzenDataGridColumn TItem="CarData" Property="CarID" Title="CarID" />
                 <RadzenDataGridColumn TItem="CarData" Property="Make" Title="Make" />
@@ -107,31 +107,32 @@
                 <RadzenDataGridColumn TItem="CarData" Property="Year" Title="Year" />
             </Columns>
         </RadzenDataGrid>
-        <p></p>
-        <RadzenButton Text="Add car" Click=RedirectToAddCar Style="width: 160px" />
+        <p></p> 
+         <RadzenButton Text="Add car" Click=RedirectToAddCar type="submit" class="nav-link custom-btn custom-border-btn btn" />
+ 
+        
     </div>
 
 </div>
 
 <div class="col-lg-10 col-12 text-center mx-auto">
-    <h2 class="mb-5">Moje samochody</h2>
+    <h2 class="mb-5">Moje przeglądy</h2>
 </div>
 <div class="container-fluid py-5">
     <div class="container">
-        <RadzenDataGrid style="height: 335px" @ref="carGrid" IsLoading=@isCarGridLoading Count="@carGridCount" Data="@cars" LoadData="@LoadCarData" TItem="CarData">
+        <RadzenDataGrid style="height: 335px" @ref="visitsGrid" class=" ms-lg-auto shadow-lg img-fluid site-footer-bottom" IsLoading=@isVisitGridLoading Count="@visitGridCount" Data="@visits" LoadData="@LoadVisitData" TItem="VisitData">
             <Columns>
-                <RadzenDataGridColumn TItem="CarData" Property="CarID" Title="CarID" />
-                <RadzenDataGridColumn TItem="CarData" Property="Make" Title="Make" />
-                <RadzenDataGridColumn TItem="CarData" Property="Model" Title="Model" />
-                <RadzenDataGridColumn TItem="CarData" Property="EngineSize" Title="EngineSize" />
-                <RadzenDataGridColumn TItem="CarData" Property="LicensePlate" Title="LicensePlate" />
-                <RadzenDataGridColumn TItem="CarData" Property="Mileage" Title="Mileage" />
-                <RadzenDataGridColumn TItem="CarData" Property="VIN" Title="VIN" />
-                <RadzenDataGridColumn TItem="CarData" Property="Year" Title="Year" />
+                <RadzenDataGridColumn TItem="VisitData" Property="CarID" Title="CarID" />
+                <RadzenDataGridColumn TItem="VisitData" Property="ClientID" Title="ClientID" />
+                <RadzenDataGridColumn TItem="VisitData" Property="Notes" Title="Notes" />
+                <RadzenDataGridColumn TItem="VisitData" Property="ServiceCost" Title="ServiceCost" />
+                <RadzenDataGridColumn TItem="VisitData" Property="ServiceDate" Title="ServiceDate" />
+                <RadzenDataGridColumn TItem="VisitData" Property="ServiceStatus" Title="ServiceStatus" />
+                <RadzenDataGridColumn TItem="VisitData" Property="ServiceType" Title="ServiceType" />
             </Columns>
         </RadzenDataGrid>
-        <p></p>
-        <RadzenButton Text="Add car" Click=RedirectToAddCar Style="width: 160px" />
+        <p> </p>
+        <RadzenButton Text="Add visit" Click=RedirectToAddVisit type="submit" class="nav-link custom-btn custom-border-btn btn" />
     </div>
 
 </div>
@@ -168,20 +169,7 @@
     }
 }
 
-<RadzenDataGrid style="height: 335px" @ref="visitsGrid" IsLoading=@isVisitGridLoading Count="@visitGridCount" Data="@visits" LoadData="@LoadVisitData" TItem="VisitData">
-    <Columns>
-        <RadzenDataGridColumn TItem="VisitData" Property="VisitID" Title="VisitID"/>
-        <RadzenDataGridColumn TItem="VisitData" Property="CarID" Title="CarID"/>
-        <RadzenDataGridColumn TItem="VisitData" Property="ClientID" Title="ClientID"/>
-        <RadzenDataGridColumn TItem="VisitData" Property="MechanicID" Title="MechanicID"/>
-        <RadzenDataGridColumn TItem="VisitData" Property="Notes" Title="Notes"/>
-        <RadzenDataGridColumn TItem="VisitData" Property="ServiceCost" Title="ServiceCost"/>
-        <RadzenDataGridColumn TItem="VisitData" Property="ServiceDate" Title="ServiceDate"/>
-        <RadzenDataGridColumn TItem="VisitData" Property="ServiceStatus" Title="ServiceStatus"/>
-        <RadzenDataGridColumn TItem="VisitData" Property="ServiceType" Title="ServiceType"/>
-    </Columns>
-</RadzenDataGrid>
-<RadzenButton Text="Add visit" Click=RedirectToAddVisit Style="width: 160px" />
+
 @code {
     RadzenDataGrid<VisitData> visitsGrid;
     IEnumerable<VisitData> visits;
@@ -204,14 +192,6 @@
     }
 
 }
-
-
-<RadzenNumeric Value=@model.LoggedClient.ClientID Disabled/>
-
-
-
-
-
 
 
 @code {
