@@ -3,16 +3,23 @@
 @inject IController controller
 @inject IModel model
 @inject NavigationManager NavManager
+@inject DialogService DialogService
 
 <RadzenDropDown @bind-Value=@carIDInputValue Placeholder="Wybierz swój samochód" class="form-control" Style="width: 100%; text-align:center; background-color: #FFFFFF;" Data=@model.CarList TextProperty="Model" ValueProperty="CarID" />
 <br>
 <RadzenTextArea Placeholder="Opisz swoją usterkę tutaj ..." @bind-Value=@notesInputValue Style="width: 100%; text-align:center" class="form-control" />
+<br>
+<RadzenDatePicker Placeholder="Wybierz datę serwisu ..." @bind-Value=@serviceDate Style="width: 100%; text-align:center" />
+<br><br>
+<RadzenTextArea Placeholder="Wybierz rodzaj usługi ..." @bind-Value=@serviceType Style="width: 100%; text-align:center" class="form-control" />
 <br>
 <RadzenButton Click=AddVisitTask Text="Zapisz się na przegląd" type="submit" class=" form-control align-items-center nav-link custom-btn custom-border-btn btn" />
 @code {
 	// <RadzenDropDown @bind-Value=@serviceInputValue Data="@(Enum.GetValues(typeof(Service)).Cast<Enum>())" Style="width: 100%; max-width: 400px;" />
 	int carIDInputValue;
 	string notesInputValue;
+	DateTime serviceDate;
+	string serviceType;
 	// Service serviceInputValue;
 
 	string labelText;
@@ -25,6 +32,7 @@
 			NavManager.NavigateTo("/login");
 		}
 		await controller.LoadCarsAsync();
+		serviceDate = DateTime.Now;
 	}
 
 	private async Task AddVisitTask()
@@ -37,13 +45,12 @@
 			MechanicID = -100,
 			Notes = notesInputValue,
 			ServiceCost = -100,
-			ServiceDate = DateTime.Now,
-			ServiceStatus = "Implement enum",
+			ServiceDate = serviceDate,
+			ServiceStatus = "PENDING",
 			ServiceType = "Also implement enum and then allow user to choose"
 		};
 		model.AddedVisit = visit;
 		await controller.AddVisitAsync();
-
-		NavManager.NavigateTo("/account");
+		DialogService.Close();
 	}
 }

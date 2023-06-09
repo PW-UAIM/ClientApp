@@ -3,6 +3,7 @@
 @inject IController controller
 @inject IModel model
 @inject NavigationManager NavManager
+@inject DialogService DialogService
 
 
 <br >
@@ -58,6 +59,6 @@
 		model.AddedCar = car;
 		await controller.AddCarAsync();
 
-		NavManager.NavigateTo("/account");
+		DialogService.Close();
 	}
 }
