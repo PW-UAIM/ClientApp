@@ -628,6 +628,10 @@ strong {
   background-color: var(--primary-color);
 }
 
+.image-center {
+    text-align: center;
+    display: block;
+}
 
 /*---------------------------------------
   FEATURE BLOCK              
@@ -761,7 +765,7 @@ strong {
   DONATE              
 -----------------------------------------*/
 .donate-section {
-  background-image: url('../images/different-people-doing-volunteer-work.jpg');
+  background-image: url('/majumiservice/images/garage.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
