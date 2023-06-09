@@ -1,7 +1,10 @@
 version: "0.2"
 
 networks:
-  int_network:
+  clientappservice_net:
+  clientapp_net:
+  mechanicappservice_net:
+  mechanicapp_net:
 
 services:
   carsdataservice:
@@ -10,53 +13,57 @@ services:
       - published: 5000
         target: 5000
     networks:
-      - int_network
+      - clientappservice_net
+      - mechanicappservice_net
   clientsdataservice:
     image: majumi/clientsdataservice:dataservice
     ports:
       - published: 5001
         target: 5001
     networks:
-      - int_network
+      - clientappservice_net
   mechanicsdataservice:
     image: majumi/mechanicsdataservice:dataservice
     ports:
       - published: 5002
         target: 5002
     networks:
-      - int_network
+      - mechanicappservice_net
   visitsdataservice:
     image: majumi/visitsdataservice:dataservice
     ports:
       - published: 5003
         target: 5003
     networks:
-      - int_network
+      - clientappservice_net
+      - mechanicappservice_net
   clientappservice:
     image: majumi/clientappservice:appservice
     ports:
       - published: 5010
         target: 5010
     networks:
-      - int_network
+      - clientapp_net
+      - clientappservice_net
   mechanicappservice:
     image: majumi/mechanicappservice:appservice
     ports:
       - published: 5011
         target: 5011
     networks:
-      - int_network
+      - mechanicapp_net
+      - mechanicappservice_net
   clientapp:
     image: majumi/clientapp:application
     ports:
       - published: 5100
         target: 5100
     networks:
-      - int_network
+      - clientapp_net
   mechanicapp:
     image: majumi/mechanicapp:application
     ports:
       - published: 5200
         target: 5200
     networks:
-      - int_network
+      - mechanicapp_net
