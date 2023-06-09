@@ -32,7 +32,6 @@ unit_test:
     tags:
       - dotnet
 
-
 build_image:
     stage: docker
     needs: [unit_test]
