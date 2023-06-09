@@ -2,7 +2,7 @@ stages:
     - build
     - test
     - docker
- #   - deploy
+    - deploy
 
 build_debug:
     stage: build
@@ -53,13 +53,12 @@ push_image:
     tags:
       - docker
 
-#production:
-#    stage: deploy
-#    needs: [push_image]
-#    before_script:
-#      - cd Kubernetes
-#    script:
-#      - Kubernetes_StopSystem.bat
-#      - Kubernetes_StartSystem.bat
-#    tags:
-#      - kubernetes
+production:
+    stage: deploy
+    needs: [push_image]
+    before_script:
+      - cd Kubernetes
+    script:
+      - kubectl rollout restart deployment/clientapp-deploy
+    tags:
+      - kubernetes
