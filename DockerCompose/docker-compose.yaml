@@ -18,6 +18,13 @@ services:
         target: 5001
     networks:
       - int_network
+  mechanicsdataservice:
+    image: majumi/mechanicsdataservice:dataservice
+    ports:
+      - published: 5002
+        target: 5002
+    networks:
+      - int_network
   visitsdataservice:
     image: majumi/visitsdataservice:dataservice
     ports:
@@ -32,10 +39,24 @@ services:
         target: 5010
     networks:
       - int_network
+  mechanicappservice:
+    image: majumi/mechanicappservice:appservice
+    ports:
+      - published: 5011
+        target: 5011
+    networks:
+      - int_network
   clientapp:
     image: majumi/clientapp:application
     ports:
       - published: 5100
         target: 5100
+    networks:
+      - int_network
+  mechanicapp:
+    image: majumi/mechanicapp:application
+    ports:
+      - published: 5200
+        target: 5200
     networks:
       - int_network
