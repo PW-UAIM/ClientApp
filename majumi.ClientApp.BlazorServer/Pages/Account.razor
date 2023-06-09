@@ -112,7 +112,7 @@
             </Columns>
         </RadzenDataGrid>
         <p></p> 
-         <RadzenButton Text="Add car" Click=RedirectToAddCar type="submit" class="nav-link custom-btn custom-border-btn btn" />
+         <RadzenButton Text="Dodaj auto" Click=RedirectToAddCar type="submit" class="nav-link custom-btn custom-border-btn btn" />
  
         
     </div>
@@ -136,7 +136,7 @@
             </Columns>
         </RadzenDataGrid>
         <p> </p>
-        <RadzenButton Text="Add visit" Click=RedirectToAddVisit type="submit" class="nav-link custom-btn custom-border-btn btn" />
+        <RadzenButton Text="Zapisz się na przegląd" Click=RedirectToAddVisit type="submit" class="nav-link custom-btn custom-border-btn btn" />
     </div>
 
 </div>
@@ -149,13 +149,13 @@
     bool isCarGridLoading = false;
 
     protected override void OnInitialized()
-	{
-		//Check if client is logged in
-		if (model.ClientID == 0 || model.LoginConfirmation == false)
-		{
-			NavManager.NavigateTo("/login");
-		}
-	}
+    {
+        //Check if client is logged in
+        if (model.ClientID == 0 || model.LoginConfirmation == false)
+        {
+            NavManager.NavigateTo("/login");
+        }
+    }
 
     async Task LoadCarData(LoadDataArgs args)
     {
@@ -169,7 +169,7 @@
 
     private async Task RedirectToAddCar()
     {
-        await DialogService.OpenAsync<AddCar>("Add Car");
+        await DialogService.OpenAsync<AddCar>("Dodaj auto");
     }
 }
 
@@ -190,9 +190,9 @@
         isVisitGridLoading = false;
     }
 
-    private void RedirectToAddVisit()
+    private async Task RedirectToAddVisit()
     {
-        NavManager.NavigateTo("/addVisit");
+        await DialogService.OpenAsync<AddVisit>("Zapisz się na przegląd");
     }
 
 }
@@ -208,7 +208,6 @@
         isClientGridLoading = true;
 
         await controller.LoadVisitsAsync();
-        //client = new [model.LoggedClient];
         isClientGridLoading = false;
     }
 }

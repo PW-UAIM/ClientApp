@@ -4,12 +4,11 @@
 @inject IModel model
 @inject NavigationManager NavManager
 
-<h2>Add Visit Page</h2>
-
-<RadzenDropDown @bind-Value=@carIDInputValue Placeholder="Choose your car" Data=@model.CarList TextProperty="Model" ValueProperty="CarID" Style="width: 100%; max-width: 400px;" />
-<RadzenTextArea Placeholder="Describe the fault here..." @bind-Value=@notesInputValue Style="width: 100%; max-width: 400px;" />
-<RadzenButton Click=AddVisitTask Text="Add visit" ButtonStyle="ButtonStyle.Primary" />
-
+<RadzenDropDown @bind-Value=@carIDInputValue Placeholder="Wybierz swój samochód" Style="width: 100%; max-width: 400px; text-align:center" class="form-control" Data=@model.CarList TextProperty="Model" ValueProperty="CarID" />
+<br>
+<RadzenTextArea Placeholder="Opisz swoją usterkę tutaj ..." @bind-Value=@notesInputValue Style="width: 100%; max-width: 400px; text-align:center" class="form-control" />
+<br>
+<RadzenButton Click=AddVisitTask Text="Zapisz się na przegląd" type="submit" class=" form-control align-items-center nav-link custom-btn custom-border-btn btn" />
 @code {
 	// <RadzenDropDown @bind-Value=@serviceInputValue Data="@(Enum.GetValues(typeof(Service)).Cast<Enum>())" Style="width: 100%; max-width: 400px;" />
 	int carIDInputValue;

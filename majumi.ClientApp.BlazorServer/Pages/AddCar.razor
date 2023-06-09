@@ -4,16 +4,24 @@
 @inject IModel model
 @inject NavigationManager NavManager
 
-<h2>Add Car Page</h2>
 
-<RadzenTextBox Placeholder="Make"@bind-Value=@makeInputValue/>
-<RadzenTextBox Placeholder="Model" @bind-Value=@modelInputValue/>
-<RadzenTextBox Placeholder="EngineSize" @bind-Value=@engineSizeInputValue />
-<RadzenTextBox Placeholder="LicensePlate" @bind-Value=@licensePlateInputValue />
-<RadzenTextBox Placeholder="VIN" @bind-Value=@vinInputValue />
-<RadzenNumeric Placeholder="Mileage" TValue="int?" @bind-Value=@mileageInputValue ShowUpDown="false"/>
-<RadzenNumeric Placeholder="Year" TValue="int?" @bind-Value=@yearInputValue ShowUpDown="false" />
-<RadzenButton Click=AddCarTask Text="Add car" ButtonStyle="ButtonStyle.Primary" />
+<br >
+<RadzenTextBox Placeholder="Marka" @bind-Value=@makeInputValue type="text" class="form-control" Style="text-align:center" />
+<br >
+<RadzenTextBox Placeholder="Model" @bind-Value=@modelInputValue type="text" class="form-control" Style="text-align:center" />
+<br>
+<RadzenTextBox Placeholder="Pojemność silnika" @bind-Value=@engineSizeInputValue  type="text" class="form-control" Style="text-align:center" />
+<br>
+<RadzenTextBox Placeholder="Numer tablicy rejestracyjnej" @bind-Value=@licensePlateInputValue type="text" class="form-control" Style="text-align:center" />
+<br>
+<RadzenTextBox Placeholder="VIN" @bind-Value=@vinInputValue type="text" class="form-control" Style="text-align:center" />
+<br>
+<RadzenNumeric Placeholder="Przebieg" TValue="int?" @bind-Value=@mileageInputValue ShowUpDown="false" type="text" class="form-control" Style="text-align:center" />
+<br>
+<RadzenNumeric Placeholder="Rok produkcji" TValue="int?" @bind-Value=@yearInputValue ShowUpDown="false" type="text" class="form-control" Style="text-align:center" />
+<br>
+<RadzenButton Click=AddCarTask Text="Dodaj auto" type="submit" class="form-control align-items-center nav-link custom-btn custom-border-btn btn" />
+
 
 @code {
 	string makeInputValue;
