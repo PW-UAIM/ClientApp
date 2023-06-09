@@ -113,6 +113,8 @@ public partial class Model : IData
 			RaisePropertyChanged(nameof(SelectedVisit));
 		}
 	}
+
+
 	private VisitData addedVisit;
 	public VisitData AddedVisit
 	{
@@ -133,4 +135,16 @@ public partial class Model : IData
 			RaisePropertyChanged(nameof(SelectedDate));
 		}
 	}
+
+
+    private ClientData loggedClient;
+    public ClientData LoggedClient
+    {
+        get { return loggedClient; }
+        set
+        {
+            loggedClient = value;
+            RaisePropertyChanged(nameof(LoggedClient));
+        }
+    }
 }

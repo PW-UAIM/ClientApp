@@ -4,22 +4,139 @@
 @inject IModel model
 @inject NavigationManager NavManager
 
-<h2>Account Page</h2>
+<div class="col-lg-10 col-12 text-center mx-auto">
+    <p>
+        <br>
+    </p>
+    <h2 class="mb-5">Moje konto</h2>
+</div>
 
-<RadzenDataGrid style="height: 335px" @ref="carGrid" IsLoading=@isCarGridLoading Count="@carGridCount" Data="@cars" LoadData="@LoadCarData" TItem="CarData">
-    <Columns>
-		<RadzenDataGridColumn TItem="CarData" Property="CarID" Title="CarID"/>
-		<RadzenDataGridColumn TItem="CarData" Property="ClientID" Title="ClientID"/>
-		<RadzenDataGridColumn TItem="CarData" Property="Make" Title="Make"/>
-		<RadzenDataGridColumn TItem="CarData" Property="Model" Title="Model"/>
-		<RadzenDataGridColumn TItem="CarData" Property="EngineSize" Title="EngineSize"/>
-		<RadzenDataGridColumn TItem="CarData" Property="LicensePlate" Title="LicensePlate"/>
-		<RadzenDataGridColumn TItem="CarData" Property="Mileage" Title="Mileage"/>
-		<RadzenDataGridColumn TItem="CarData" Property="VIN" Title="VIN"/>
-		<RadzenDataGridColumn TItem="CarData" Property="Year" Title="Year" />
-    </Columns>
-</RadzenDataGrid>
-<RadzenButton Text="Add car" Click=RedirectToAddCar Style="width: 160px" />
+
+
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center border mb-4 mb-lg-0 p-4" style="height: 120px;">
+                    <i class="bi-person-workspace mr-3"></i>
+                    <div class="d-flex flex-column">
+                        <h5 class="font-weight-bold">Imię</h5>
+                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.FirstName></RadzenLabel></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center border mb-4 mb-lg-0 p-4" style="height: 120px;">
+                    <i class=" bi-person-video3 mr-3"></i>
+                    <div class="d-flex flex-column">
+                        <h5 class="font-weight-bold">Nazwisko</h5>
+                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.LastName></RadzenLabel></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center border mb-4 mb-lg-0 p-4" style="height: 120px;">
+                    <i class="bi-geo-alt mr-3"></i>
+                    <div class="d-flex flex-column">
+                        <h5 class="font-weight-bold">Adres</h5>
+                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.Address></RadzenLabel></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center border mb-4 mb-lg-0 p-4" style="height: 120px;">
+                    <i class="bi-envelope-open mr-3"></i>
+                    <div class="d-flex flex-column">
+                        <h5 class="font-weight-bold">E-mail</h5>
+                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.Email></RadzenLabel></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center border mb-4 mb-lg-0 p-4" style="height: 120px;">
+                    <i class=" bi-list-check mr-3"></i>
+                    <div class="d-flex flex-column">
+                        <h5 class="font-weight-bold">Firma ubezpieczeniowa</h5>
+                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.InsuranceCompany></RadzenLabel></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center border mb-4 mb-lg-0 p-4" style="height: 120px;">
+                    <i class="bi-list-check mr-3"></i>
+                    <div class="d-flex flex-column">
+                        <h5 class="font-weight-bold">Numer polisy</h5>
+                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.PolicyNumber></RadzenLabel></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center border mb-4 mb-lg-0 p-4" style="height: 120px;">
+                    <i class="bi-phone mr-3"></i>
+                    <div class="d-flex flex-column">
+                        <h5 class="font-weight-bold">Numer Telefonu</h5>
+                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.PhoneNumber></RadzenLabel></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="col-lg-10 col-12 text-center mx-auto">
+    <h2 class="mb-5">Moje samochody</h2>
+</div>
+<div class="container-fluid py-5">
+    <div class="container">
+        <RadzenDataGrid style="height: 335px" @ref="carGrid" IsLoading=@isCarGridLoading Count="@carGridCount" Data="@cars" LoadData="@LoadCarData" TItem="CarData">
+            <Columns>
+                <RadzenDataGridColumn TItem="CarData" Property="CarID" Title="CarID" />
+                <RadzenDataGridColumn TItem="CarData" Property="Make" Title="Make" />
+                <RadzenDataGridColumn TItem="CarData" Property="Model" Title="Model" />
+                <RadzenDataGridColumn TItem="CarData" Property="EngineSize" Title="EngineSize" />
+                <RadzenDataGridColumn TItem="CarData" Property="LicensePlate" Title="LicensePlate" />
+                <RadzenDataGridColumn TItem="CarData" Property="Mileage" Title="Mileage" />
+                <RadzenDataGridColumn TItem="CarData" Property="VIN" Title="VIN" />
+                <RadzenDataGridColumn TItem="CarData" Property="Year" Title="Year" />
+            </Columns>
+        </RadzenDataGrid>
+        <p></p>
+        <RadzenButton Text="Add car" Click=RedirectToAddCar Style="width: 160px" />
+    </div>
+
+</div>
+
+<div class="col-lg-10 col-12 text-center mx-auto">
+    <h2 class="mb-5">Moje samochody</h2>
+</div>
+<div class="container-fluid py-5">
+    <div class="container">
+        <RadzenDataGrid style="height: 335px" @ref="carGrid" IsLoading=@isCarGridLoading Count="@carGridCount" Data="@cars" LoadData="@LoadCarData" TItem="CarData">
+            <Columns>
+                <RadzenDataGridColumn TItem="CarData" Property="CarID" Title="CarID" />
+                <RadzenDataGridColumn TItem="CarData" Property="Make" Title="Make" />
+                <RadzenDataGridColumn TItem="CarData" Property="Model" Title="Model" />
+                <RadzenDataGridColumn TItem="CarData" Property="EngineSize" Title="EngineSize" />
+                <RadzenDataGridColumn TItem="CarData" Property="LicensePlate" Title="LicensePlate" />
+                <RadzenDataGridColumn TItem="CarData" Property="Mileage" Title="Mileage" />
+                <RadzenDataGridColumn TItem="CarData" Property="VIN" Title="VIN" />
+                <RadzenDataGridColumn TItem="CarData" Property="Year" Title="Year" />
+            </Columns>
+        </RadzenDataGrid>
+        <p></p>
+        <RadzenButton Text="Add car" Click=RedirectToAddCar Style="width: 160px" />
+    </div>
+
+</div>
+
+   
 @code {
     RadzenDataGrid<CarData> carGrid;
     IEnumerable<CarData> cars;
@@ -84,5 +201,30 @@
     private void RedirectToAddVisit()
     {
         NavManager.NavigateTo("/addVisit");
+    }
+
+}
+
+
+<RadzenNumeric Value=@model.LoggedClient.ClientID Disabled/>
+
+
+
+
+
+
+
+@code {
+    RadzenDataGrid<ClientData> clientsGrid;
+    IEnumerable<ClientData> client;
+    bool isClientGridLoading = false;
+
+    async Task LoadClientData(LoadDataArgs args)
+    {
+        isClientGridLoading = true;
+
+        await controller.LoadVisitsAsync();
+        //client = new [model.LoggedClient];
+        isClientGridLoading = false;
     }
 }
