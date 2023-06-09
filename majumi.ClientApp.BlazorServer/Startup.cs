@@ -22,6 +22,7 @@ using Microsoft.Extensions.Hosting;
 using majumi.ClientApp.Controller;
 using majumi.ClientApp.Model;
 using majumi.ClientApp.Utilities;
+using Radzen;
 
 public class Startup
 {
@@ -36,8 +37,8 @@ public class Startup
 	{
 		services.AddRazorPages();
 		services.AddServerSideBlazor();
-
-		services.AddScoped<IEventDispatcher, EmptyEventDispatcher>();
+        services.AddScoped<DialogService>();
+        services.AddScoped<IEventDispatcher, EmptyEventDispatcher>();
 		services.AddScoped<IModel, Model>();
 		services.AddScoped<IController, Controller>();
 	}

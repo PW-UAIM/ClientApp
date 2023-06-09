@@ -3,6 +3,10 @@
 @inject IController controller
 @inject IModel model
 @inject NavigationManager NavManager
+@inject DialogService DialogService
+<RadzenDialog />
+
+
 
 <div class="col-lg-10 col-12 text-center mx-auto">
     <p>
@@ -21,7 +25,7 @@
                     <i class="bi-person-workspace mr-3"></i>
                     <div class="d-flex flex-column">
                         <h5 class="font-weight-bold">Imię</h5>
-                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.FirstName></RadzenLabel></p>
+                        <p class="m-0"><RadzenLabel Text="@($"{(model.LoggedClient == null ? "null" : model.LoggedClient.FirstName)}")"></RadzenLabel></p>
                     </div>
                 </div>
             </div>
@@ -30,7 +34,7 @@
                     <i class=" bi-person-video3 mr-3"></i>
                     <div class="d-flex flex-column">
                         <h5 class="font-weight-bold">Nazwisko</h5>
-                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.LastName></RadzenLabel></p>
+                        <p class="m-0"><RadzenLabel Text="@($"{(model.LoggedClient == null ? "null" : model.LoggedClient.LastName)}")"></RadzenLabel></p>
                     </div>
                 </div>
             </div>
@@ -39,7 +43,7 @@
                     <i class="bi-geo-alt mr-3"></i>
                     <div class="d-flex flex-column">
                         <h5 class="font-weight-bold">Adres</h5>
-                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.Address></RadzenLabel></p>
+                        <p class="m-0"><RadzenLabel Text="@($"{(model.LoggedClient == null ? "null" : model.LoggedClient.Address)}")"></RadzenLabel></p>
                     </div>
                 </div>
             </div>
@@ -50,7 +54,7 @@
                     <i class="bi-envelope-open mr-3"></i>
                     <div class="d-flex flex-column">
                         <h5 class="font-weight-bold">E-mail</h5>
-                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.Email></RadzenLabel></p>
+                        <p class="m-0"><RadzenLabel Text="@($"{(model.LoggedClient == null ? "null" : model.LoggedClient.Email)}")"></RadzenLabel></p>
                     </div>
                 </div>
             </div>
@@ -59,7 +63,7 @@
                     <i class=" bi-list-check mr-3"></i>
                     <div class="d-flex flex-column">
                         <h5 class="font-weight-bold">Firma ubezpieczeniowa</h5>
-                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.InsuranceCompany></RadzenLabel></p>
+                        <p class="m-0"><RadzenLabel Text="@($"{(model.LoggedClient == null ? "null" : model.LoggedClient.InsuranceCompany)}")"></RadzenLabel></p>
                     </div>
                 </div>
             </div>
@@ -68,7 +72,7 @@
                     <i class="bi-list-check mr-3"></i>
                     <div class="d-flex flex-column">
                         <h5 class="font-weight-bold">Numer polisy</h5>
-                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.PolicyNumber></RadzenLabel></p>
+                        <p class="m-0"><RadzenLabel Text="@($"{(model.LoggedClient == null ? "null" : model.LoggedClient.PolicyNumber)}")"></RadzenLabel></p>
                     </div>
                 </div>
             </div>
@@ -80,7 +84,7 @@
                     <i class="bi-phone mr-3"></i>
                     <div class="d-flex flex-column">
                         <h5 class="font-weight-bold">Numer Telefonu</h5>
-                        <p class="m-0"><RadzenLabel Text=@model.LoggedClient.PhoneNumber></RadzenLabel></p>
+                        <p class="m-0"><RadzenLabel Text="@($"{(model.LoggedClient == null ? "null" : model.LoggedClient.PhoneNumber)}")"></RadzenLabel></p>
                     </div>
                 </div>
             </div>
@@ -163,9 +167,9 @@
         isCarGridLoading = false;
     }
 
-    private void RedirectToAddCar()
+    private async Task RedirectToAddCar()
     {
-        NavManager.NavigateTo("/addCar");
+        await DialogService.OpenAsync<AddCar>("Add Car");
     }
 }
 
