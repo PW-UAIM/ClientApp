@@ -31,4 +31,6 @@ public interface IData : INotifyPropertyChanged
 	VisitData SelectedVisit { get; set;}
 	VisitData AddedVisit { get; set; }
 	DateOnly SelectedDate { get; }
+
+	ClientData LoggedClient { get; set; }
 }

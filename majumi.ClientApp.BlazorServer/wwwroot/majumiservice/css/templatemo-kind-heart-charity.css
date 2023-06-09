@@ -807,7 +807,7 @@ strong {
   position: relative;
   overflow: hidden;
   width: 150px;
-  margin-right: 20px;
+  margin-right: 30px;
 }
 
 .news-category-block {
@@ -1665,3 +1665,16 @@ blockquote::before {
   }
 }
 
+.error {
+    font-size: var(--p-font-size);
+    font-weight: var(--font-weight-semibold);
+    transition: all 0.3s;
+    margin: 0;
+    text-align: center;
+}
+
+.errortext {
+    padding: 0;
+    width: 100%;
+    color: red;
+}
