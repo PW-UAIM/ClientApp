@@ -16,10 +16,10 @@
 <RadzenButton Click=AddVisitTask Text="Zapisz się na przegląd" type="submit" class=" form-control align-items-center nav-link custom-btn custom-border-btn btn" />
 @code {
 	// <RadzenDropDown @bind-Value=@serviceInputValue Data="@(Enum.GetValues(typeof(Service)).Cast<Enum>())" Style="width: 100%; max-width: 400px;" />
-	int carIDInputValue;
-	string notesInputValue;
+	int carIDInputValue = 0;
+	string notesInputValue = "";
 	DateTime serviceDate;
-	string serviceType;
+	string serviceType = "";
 	// Service serviceInputValue;
 
 	string labelText;
